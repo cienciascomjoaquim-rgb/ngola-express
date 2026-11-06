@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <!-- Configura a codificação dos caracteres -->
+    <meta charset="UTF-8">
+
+    <!-- Adapta a página aos ecrãs dos telemóveis -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Define a cor da barra do navegador no telemóvel -->
+    <meta name="theme-color" content="#071a35">
+
+    <!-- Título apresentado no navegador -->
+    <title>NGOLA-EXPRES | Carteira Digital</title>
+
+    <!-- Liga o ficheiro HTML ao ficheiro CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================
+     1. CABEÇALHO E IDENTIDADE DA NGOLA-EXPRES
+     ========================================= -->
+
+<header class="topbar">
+
+    <!-- Nome e símbolo da NGOLA-EXPRES -->
+    <a href="#" class="brand">
+
+        <span class="brand-icon">N</span>
+
+        <span>
+            NGOLA<span class="brand-light">-EXPRES</span>
+        </span>
+
+    </a>
+
+    <!-- Área dos botões do cabeçalho -->
+    <div class="topbar-actions">
+
+<!-- Botão para acesso dos agentes -->
+<button
+    type="button"
+    class="agent-button"
+    id="agentAccessButton"
+    aria-haspopup="dialog"
+    aria-expanded="false">
+    Tornar-se Agente
+</button>
+
+<!-- Janela flutuante de acesso dos agentes -->
+<div
+    class="agent-access-overlay"
+    id="agentAccessOverlay"
+    hidden>
+
+    <div
+        class="agent-access-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agentAccessTitle">
+
+        <button
+            type="button"
+            class="agent-access-close"
+            id="agentAccessClose"
+            aria-label="Fechar janela">
+            &times;
+        </button>
+
+        <h2 id="agentAccessTitle">NGOLA-EXPRES</h2>
+
+        <!-- Opções iniciais -->
+        <div id="agentAccessOptions" class="agent-access-options">
+
+            <p>Escolhe como pretendes continuar.</p>
+
+            <button type="button" id="agentLoginButton">
+                INICIAR SESSÃO
+            </button>
+
+            <button type="button" id="agentRegisterButton">
+                INSCREVER-SE
+            </button>
+
+        </div>
+
+        <!-- Formulário de candidatura a agente -->
+        <form id="agentRegisterForm" hidden>
+
+            <h3>Candidatura a Agente</h3>
+
+            <p>
+                Utiliza um e-mail válido e activo.
+                Recomendamos uma conta Google que consigas utilizar.
+            </p>
+
+            <label for="agentFullName">Nome completo conforme o BI</label>
+            <input
+                type="text"
+                id="agentFullName"
+                name="fullName"
+                autocomplete="name"
+                required>
+
+            <label for="agentPhone">Telefone</label>
+            <div class="agent-phone-field">
+                <span>+244</span>
+                <input
+                    type="tel"
+                    id="agentPhone"
+                    name="phone"
+                    inputmode="numeric"
+                    autocomplete="tel-national"
+                    placeholder="920000089"
+                    pattern="[0-9]{9}"
+                    maxlength="9"
+                    required>
+            </div>
+
+            <label for="agentBI">Número do BI</label>
+            <input
+                type="text"
+                id="agentBI"
+                name="biNumber"
+                autocomplete="off"
+                required>
+
+            <label for="agentEmail">E-mail</label>
+            <input
+                type="email"
+                id="agentEmail"
+                name="email"
+                autocomplete="email"
+                required>
+
+            <label for="agentPassword">Palavra-passe</label>
+            <input
+                type="password"
+                id="agentPassword"
+                name="password"
+                autocomplete="new-password"
+                minlength="6"
+                required>
+
+            <p class="agent-email-notice">
+                Atenção: confirma que tens acesso ao e-mail indicado.
+                A candidatura ficará pendente até à aprovaçã em menos de 42 horas.
+            </p>
+
+            <button type="submit" id="agentRegisterSubmit">
+                ENVIAR CANDIDATURA
+            </button>
+
+            <button type="button" id="agentBackToOptions">
+                VOLTAR
+            </button>
+
+            <p
+                id="agentRegisterMessage"
+                role="status"
+                aria-live="polite">
+            </p>
+
+        </form>
+        
+        <!-- Formulário de início de sessão dos agentes -->
+<form id="agentLoginForm" hidden>
+
+    <h3>Iniciar sessão</h3>
+
+    <p>
+        Introduz os dados utilizados na tua candidatura.
+    </p>
+
+    <label for="agentLoginEmail">E-mail</label>
+    <input
+        type="email"
+        id="agentLoginEmail"
+        name="email"
+        autocomplete="username"
+        required>
+
+    <label for="agentLoginPhone">Número de telefone</label>
+
+    <div class="agent-phone-field">
+        <span>+244</span>
+
+        <input
+            type="tel"
+            id="agentLoginPhone"
+            name="phone"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="920000009"
+            pattern="[0-9]{9}"
+            maxlength="9"
+            required>
+    </div>
+
+    <label for="agentLoginPassword">Palavra-passe</label>
+    <input
+        type="password"
+        id="agentLoginPassword"
+        name="password"
+        autocomplete="current-password"
+        required>
+
+    <button type="submit" id="agentLoginSubmit">
+        ENTRAR
+    </button>
+
+    <button type="button" id="agentLoginBack">
+        VOLTAR
+    </button>
+
+    <p
+        id="agentLoginMessage"
+        role="status"
+        aria-live="polite">
+    </p>
+
+</form>
+
+    </div>
+</div>
+
+        <!-- Botão de menu para dispositivos móveis -->
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menu"
+            aria-expanded="false">
+
+            ☰
+
+        </button>
+
+    </div>
+
+</header>
+    <!-- =========================================
+         2. CONTEÚDO PRINCIPAL
+         ========================================= -->
+<!-- =========================================
+     ÁREA PRIVADA DO CLIENTE
+     ========================================= -->
+<!-- =========================================
+     JANELA DE LEVANTAMENTO
+     ========================================= -->
+<div id="withdrawModal" class="withdraw-overlay" hidden>
+
+    <section
+        class="withdraw-box"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="withdrawTitle">
+
+        <!-- BOTÃO FECHAR -->
+        <button
+            type="button"
+            id="closeWithdraw"
+            class="withdraw-close"
+            aria-label="Fechar">
+            &times;
+        </button>
+
+        <h2 id="withdrawTitle">Levantar saldo</h2>
+
+        <!-- =====================================
+             ETAPA 1: VALOR
+             ===================================== -->
+        <div id="withdrawAmountStep">
+
+            <p class="withdraw-description">
+                Transfere o teu saldo para a tua conta bancária nacional.
+            </p>
+
+            <div class="withdraw-rate">
+                Taxa de câmbio
+                <strong>1 USD = 1.050 Kz</strong>
+            </div>
+            
+<!-- SALDO DISPONÍVEL PARA LEVANTAMENTO -->
+<div class="withdraw-available-balance">
+    <span>Saldo disponível</span>
+    <strong id="withdrawAvailableBalance">20,00 USD</strong>
+</div>
+
+<p id="withdrawValidationMessage" role="status" aria-live="polite"></p>
+
+
+            <form id="withdrawForm">
+
+                <label for="withdrawAmount">
+                    Valor a levantar (USD)
+                </label>
+
+                <input
+                    type="number"
+                    id="withdrawAmount"
+                    name="withdrawAmount"
+                    min="0.01"
+                    max="200"
+                    step="0.01"
+                    placeholder="Ex.: 25,00"
+                    required>
+
+                <label for="withdrawKz">
+                    Valor a receber (Kz)
+                </label>
+
+                <input
+                    type="text"
+                    id="withdrawKz"
+                    name="withdrawKz"
+                    placeholder="0,00 Kz"
+                    readonly>
+
+                <small id="withdrawLimitInfo">
+                    Limite diário: 200 USD.
+                </small>
+
+                <button
+                    type="button"
+                    id="withdrawContinue"
+                    class="button button-primary"
+                    disabled>
+                    Continuar
+                </button>
+
+            </form>
+
+            <p
+                id="withdrawMessage"
+                role="status"
+                aria-live="polite">
+            </p>
+
+        </div>
+
+        <!-- =====================================
+             ETAPA 2: MÉTODO DE RECEBIMENTO
+             ===================================== -->
+        <div id="withdrawMethodStep" hidden>
+
+            <h3>Como queres receber?</h3>
+
+            <p class="withdraw-description">
+                Escolhe o método em que pretendes receber o teu dinheiro.
+            </p>
+
+            <div class="withdraw-method-options">
+
+                <button
+                    type="button"
+                    class="withdraw-method-button"
+                    data-method="BAI">
+                    BAI
+                </button>
+
+                <button
+                    type="button"
+                    class="withdraw-method-button"
+                    data-method="BFA">
+                    BFA
+                </button>
+
+                <button
+                    type="button"
+                    class="withdraw-method-button"
+                    data-method="EXPRESS">
+                    N.º EXPRESS
+                </button>
+
+            </div>
+
+            <p
+                id="withdrawMethodMessage"
+                role="status"
+                aria-live="polite">
+            </p>
+
+            <button
+                type="button"
+                id="withdrawBackButton"
+                class="button button-secondary">
+                Voltar
+            </button>
+
+        </div>
+
+        <!-- =====================================
+             ETAPA 3: DADOS DE RECEBIMENTO
+             ===================================== -->
+        <div id="withdrawDetailsStep" hidden>
+
+            <h3 id="withdrawDetailsTitle">
+                Dados de recebimento
+            </h3>
+
+            <!-- DADOS BANCÁRIOS -->
+            <div id="withdrawBankFields" hidden>
+
+                <label for="withdrawIban">IBAN</label>
+
+                <div class="withdraw-iban-group">
+
+                    <span class="withdraw-iban-prefix">AO06</span>
+
+                    <input
+                        type="text"
+                        id="withdrawIban"
+                        placeholder="Introduz os restantes caracteres"
+                        maxlength="21"
+                        autocomplete="off">
+
+                </div>
+
+                <label for="withdrawAccountHolder">
+                    Nome do titular da conta
+                </label>
+
+                <input
+                    type="text"
+                    id="withdrawAccountHolder"
+                    placeholder="Nome completo do titular"
+                    autocomplete="name">
+
+            </div>
+
+            <!-- DADOS EXPRESS -->
+            <div id="withdrawExpressFields" hidden>
+
+                <label for="withdrawExpressPhone">
+                    Número EXPRESS
+                </label>
+
+                <input
+                    type="tel"
+                    id="withdrawExpressPhone"
+                    placeholder="+244 9XX XXX XXX"
+                    autocomplete="tel">
+
+                <p class="withdraw-warning">
+                    Certifica-te de que o número está correto e utiliza sempre o teu próprio número EXPRESS.
+                </p>
+
+            </div>
+
+            <p
+                id="withdrawDetailsMessage"
+                role="status"
+                aria-live="polite">
+            </p>
+
+            <button
+                type="button"
+                id="withdrawReviewButton"
+                class="button button-primary">
+                Continuar
+            </button>
+
+            <button
+                type="button"
+                id="withdrawDetailsBackButton"
+                class="button button-secondary">
+                Voltar
+            </button>
+
+        </div>
+
+        <!-- =====================================
+             ETAPA 4: CONFIRMAÇÃO
+             ===================================== -->
+        <div id="withdrawConfirmationStep" hidden>
+
+            <h3>Confirmar levantamento</h3>
+
+            <p class="withdraw-description">
+                Confirma os dados antes de prosseguir.
+            </p>
+
+            <div class="withdraw-review-card">
+
+                <div class="withdraw-review-row">
+                    <span>Valor a levantar</span>
+                    <strong id="reviewWithdrawUSD">0,00 USD</strong>
+                </div>
+
+                <div class="withdraw-review-row">
+                    <span>Valor a receber</span>
+                    <strong id="reviewWithdrawKz">0,00 Kz</strong>
+                </div>
+
+                <div class="withdraw-review-row">
+                    <span>Método</span>
+                    <strong id="reviewWithdrawMethod">—</strong>
+                </div>
+
+                <div class="withdraw-review-row">
+                    <span>Dados de recebimento</span>
+                    <strong id="reviewWithdrawDetails">—</strong>
+                </div>
+
+            </div>
+
+            <p class="withdraw-warning">
+                Confirma cuidadosamente os dados. Um pedido de levantamento não significa que a transferência já foi efetuada.
+            </p>
+
+            <p
+                id="withdrawConfirmationMessage"
+                role="status"
+                aria-live="polite">
+            </p>
+
+            <button
+                type="button"
+                id="withdrawSubmitButton"
+                class="button button-primary">
+                Confirmar dados
+            </button>
+
+            <button
+                type="button"
+                id="withdrawEditButton"
+                class="button button-secondary">
+                Voltar e corrigir
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<section id="clientDashboard" hidden>
+
+  <div class="section-heading">
+    <p id="clientWelcome">
+        Bem-vindo à tua carteira digital.
+    </p>
+</div>
+
+    <!-- CARTÃO DIGITAL -->
+    <div class="client-wallet-card">
+
+        <div class="wallet-card-top">
+            <div class="wallet-brand">
+                <span class="wallet-brand-symbol">N</span>
+
+                <div>
+                    <strong>NGOLA-EXPRES</strong>
+                    <small>CARTEIRA DIGITAL</small>
+                </div>
+            </div>
+
+            <span class="wallet-card-type">USD</span>
+        </div>
+
+        <div class="wallet-chip">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="wallet-balance-label">
+            SALDO DISPONÍVEL
+        </div>
+
+        <div class="wallet-balance" id="clientBalance">
+            0,00 USD
+        </div>
+
+        <div class="wallet-usdc">
+    Equivalente em Kz:
+    <span id="clientKzBalance">0,00 Kz</span>
+</div>
+
+ <!-- TITULAR E VALIDADE DO CARTÃO -->
+<div class="wallet-card-bottom">
+    <div class="wallet-owner">
+        <strong id="clientCardName">CLIENTE NGOLA-EXPRES</strong>
+    </div>
+
+    <div class="wallet-expiry">
+        <small>DATA DE EXPIRAÇÃO</small>
+        <strong>2028</strong>
+    </div>
+</div>
+
+    </div>
+
+    <!-- RESUMO DA CONTA -->
+    <div class="client-summary-grid">
+
+        <article class="client-summary-card">
+            <span class="summary-icon">👤</span>
+
+            <div>
+                <h3>O meu perfil</h3>
+                <p id="clientName">Nome do cliente</p>
+                <p id="clientEmail">Email do cliente</p>
+            </div>
+        </article>
+
+        <article class="client-summary-card">
+            <span class="summary-icon">⇄</span>
+
+            <div>
+                <h3>Operações</h3>
+                <p>Compra e levantamento</p>
+                <small>Disponíveis após a implementação financeira.</small>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- AÇÕES DA CONTA -->
+    <div class="client-actions">
+
+        <h3>As minhas operações</h3>
+
+        <div class="client-actions-grid">
+
+          <!-- BOTÃO: Carregar carteira -->
+<button
+    type="button"
+    class="client-action-button"
+    id="buyBalanceButton">
+    <span>＋</span>
+    <strong>Carregar carteira</strong>
+    <small>Kz para USD</small>
+</button>
+
+            <button
+    type="button"
+    class="client-action-button"
+    id="withdrawBalanceButton">
+    <span>↗</span>
+    <strong>Levantar saldo</strong>
+    <small>USD para Kz</small>
+</button>
+
+            <button
+                type="button"
+                class="client-action-button"
+                id="transactionHistoryButton"
+                disabled>
+                <span>↻</span>
+                <strong>Histórico</strong>
+                <small>Consultar operações</small>
+            </button>
+
+        </div>
+
+        <p class="client-coming-soon">
+            As operações financeiras serão ativadas após a implementação
+            do sistema de transações seguras.
+        </p>
+
+    </div>
+
+  <!-- TERMINAR SESSÃO -->
+<div class="client-logout-container">
+    <button
+        type="button"
+        class="button button-secondary logout-icon-button"
+        id="logoutButton"
+        aria-label="Terminar sessão"
+        title="Terminar sessão">
+
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true">
+
+            <path d="M12 2v10"></path>
+            <path d="M5.6 5.6a9 9 0 1 0 12.8 0"></path>
+        </svg>
+
+    </button>
+</div>
+</section>
+    <main>
+
+        <!-- =========================================
+             2.1. SECÇÃO DE APRESENTAÇÃO
+             ========================================= -->
+
+        <section class="hero">
+
+            <!-- Textos e botões de apresentação -->
+            <div class="hero-content">
+
+                <span class="badge">
+                    CARTEIRA DIGITAL
+                </span>
+
+                <h1>
+                    O teu dinheiro.<br>
+                    <span>Mais possibilidades.</span>
+                </h1>
+
+                <p>
+                    Gere os teus fundos, acompanha as tuas
+                    operações e descobre uma nova forma de
+                    gerir o teu dinheiro.
+                </p>
+
+                <!-- Botões de acesso à plataforma -->
+                <div class="hero-buttons">
+
+                    <button
+                        class="button button-primary"
+                        data-action="register">
+
+                        Criar conta
+
+                    </button>
+
+                    <button
+                        class="button button-secondary"
+                        data-action="login">
+
+                        Iniciar sessão
+
+                    </button>
+
+                </div>
+
+                <!-- Mensagem informativa de segurança -->
+                <div class="security-note">
+
+                    <span>◆</span>
+
+                    Uma plataforma desenvolvida com foco
+                    na segurança.
+
+                </div>
+
+            </div>
+
+
+ <!-- =========================================
+     2.2. CARTÃO ILUSTRATIVO DA CARTEIRA
+     ========================================= -->
+
+<div class="preview-card">
+
+    <!-- Identificação do cartão -->
+    <div class="card-top">
+
+        <span>NGOLA-EXPRES</span>
+
+        <!-- Símbolo decorativo do cartão -->
+        <span class="card-chip">▦</span>
+
+    </div>
+
+    <!-- Área central sem saldo nem informações financeiras -->
+    <div class="card-center">
+
+        <div class="card-title">
+            CARTEIRA DIGITAL P2P
+        </div>
+
+        <div class="card-description">
+            Transações USD ⇄ Kz
+        </div>
+
+    </div>
+
+    <!-- Rodapé do cartão -->
+    <div class="card-bottom">
+
+        <span>NGOLA-EXPRES</span>
+
+        <span>Simples • Prática • Segura</span>
+
+    </div>
+
+</div>
+
+</section>
+<!-- Secção reservada para publicidades -->
+
+    <!-- =========================================
+         6. RODAPÉ DA PLATAFORMA
+         ========================================= -->
+
+    <footer class="footer">
+
+        <!-- Identidade da plataforma -->
+        <a href="#" class="brand footer-brand">
+
+            <span class="brand-icon">N</span>
+
+            <span>
+                NGOLA<span class="brand-light">-EXPRES</span>
+            </span>
+
+        </a>
+
+        <!-- O ano será preenchido automaticamente -->
+        <p>
+            &copy; <span id="currentYear"></span>
+            NGOLA-EXPRES. Todos os direitos reservados.
+        </p>
+
+        <!-- Aviso de demonstração -->
+        <p class="footer-note">
+
+            Demonstração visual. Não representa um serviço
+            financeiro operacional.
+
+        </p>
+
+    </footer>
+
+
+    <!-- =========================================
+         7. ÁREA DE NOTIFICAÇÕES
+         ========================================= -->
+
+    <!-- As mensagens de interação aparecerão aqui -->
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+<!-- =========================================
+     8. JANELA DE AUTENTICAÇÃO
+     ========================================= -->
+
+<div class="auth-overlay" id="authOverlay" hidden>
+
+    <section class="auth-box" role="dialog"
+        aria-modal="true" aria-labelledby="authTitle">
+
+        <!-- Botão para fechar o formulário -->
+        <button type="button" class="auth-close"
+            id="authClose" aria-label="Fechar">
+            &times;
+        </button>
+
+        <!-- Título do formulário -->
+        <h2 id="authTitle">Criar conta</h2>
+
+        <p id="authDescription">
+            Preenche os teus dados para começares.
+        </p>
+
+        <!-- Formulário de criação de conta -->
+        <form id="registerForm">
+
+            <label for="fullName">Nome completo conforme o BI</label>
+            <input id="fullName" name="fullName"
+                type="text" autocomplete="name" required>
+
+            <label for="phone">Número de telefone</label>
+            <input id="phone" name="phone"
+                type="tel" autocomplete="tel" required>
+
+            <label for="city">Cidade</label>
+            <input id="city" name="city"
+                type="text" autocomplete="address-level2" required>
+
+            <label for="registerEmail">Email</label>
+            <input id="registerEmail" name="email"
+                type="email" autocomplete="email" required>
+
+  <label for="registerPassword">Palavra-passe</label>
+
+<div class="password-field">
+    <input
+        id="registerPassword"
+        name="password"
+        type="password"
+        autocomplete="new-password"
+        minlength="8"
+        required
+    >
+
+    <button
+        type="button"
+        class="password-toggle"
+        data-password-target="registerPassword">
+        Mostrar
+    </button>
+</div>
+
+        <label for="confirmPassword">Confirmar palavra-passe</label>
+
+<div class="password-field">
+    <input
+        id="confirmPassword"
+        name="confirmPassword"
+        type="password"
+        autocomplete="new-password"
+        minlength="8"
+        required
+    >
+
+    <button
+        type="button"
+        class="password-toggle"
+        data-password-target="confirmPassword">
+        Mostrar
+    </button>
+</div>
+
+            <button type="submit" class="button button-primary"
+                id="registerSubmit">
+                Criar conta
+            </button>
+
+        </form>
+
+        <!-- Formulário de início de sessão -->
+        <form id="loginForm" hidden>
+
+            <label for="loginEmail">Email</label>
+            <input id="loginEmail" name="email"
+                type="email" autocomplete="email" required>
+
+ <label for="loginPassword">Palavra-passe</label>
+
+<div class="password-field">
+    <input
+        id="loginPassword"
+        name="password"
+        type="password"
+        autocomplete="current-password"
+        required
+    >
+
+    <button
+        type="button"
+        class="password-toggle"
+        data-password-target="loginPassword">
+        Mostrar
+    </button>
+</div>
+
+            <button type="submit" class="button button-primary">
+                Iniciar sessão
+            </button>
+
+        </form>
+
+        <!-- Mensagens de sucesso ou erro -->
+        <p id="authMessage" role="status" aria-live="polite"></p>
+
+        <!-- Alternar entre os formulários -->
+        <button type="button" class="auth-switch" id="authSwitch">
+            Já tens conta? Iniciar sessão
+        </button>
+
+    </section>
+
+</div>
+
+<!-- =========================================
+     9. LIGAÇÃO AO JAVASCRIPT
+     ========================================= -->
+
+<!-- O JavaScript passa a utilizar módulos ES -->
+<script type="module" src="app.js"></script>
+  
+</body>
+</html>

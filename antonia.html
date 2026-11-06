@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NGOLA-EXPRES | GERENTE ADM</title>
+  <link rel="stylesheet" href="antonia.css">
+
+  <style>
+    /* DASHBOARD ADMINISTRATIVO */
+    [hidden] { display: none !important; }
+
+    .admin-dashboard {
+      width: min(100% - 24px, 390px);
+      margin: 24px auto;
+      color: #183153;
+    }
+
+    .dashboard-header,
+    .dashboard-card,
+    .dashboard-section {
+      background: #f5f9ff;
+      border: 1px solid #d6e6fa;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .dashboard-header {
+      background: linear-gradient(135deg, #0757b7, #2389e8);
+      color: white;
+    }
+
+    .dashboard-header h1 {
+      margin: 0 0 5px;
+      font-size: 23px;
+    }
+
+    .dashboard-card h2,
+    .dashboard-section h2 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .admin-balance {
+      font-size: 30px;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+      margin: 12px 0;
+    }
+
+    .admin-dashboard input,
+    .admin-dashboard select,
+    .admin-dashboard button {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 6px 0;
+      font: inherit;
+    }
+
+    .admin-dashboard input,
+    .admin-dashboard select {
+      border: 1px solid #c9d8e9;
+      background: white;
+      color: #183153;
+    }
+
+    .admin-dashboard button {
+      border: 0;
+      background: #0966c7;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .admin-dashboard button.secondary {
+      background: #e1edfc;
+      color: #12477f;
+      border: 1px solid #c3daf6;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .dashboard-grid button {
+      min-height: 72px;
+      margin: 0;
+    }
+
+    .dashboard-message {
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .dashboard-item {
+      border-top: 1px solid #d6e6fa;
+      padding: 12px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .room-button {
+      text-align: left;
+    }
+
+    .logout-button {
+      background: #a52a2a !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================================
+       1. ACESSO DO ADMINISTRADOR
+       O antonia.js gere este formulário.
+       ===================================== -->
+
+  <main id="adminLoginView" class="admin-login-container">
+    <section class="admin-login-card">
+      <div class="admin-logo">N</div>
+      <p class="admin-brand">NGOLA-EXPRES</p>
+      <h1>GERENTE ADM</h1>
+      <p class="admin-description">Área reservada de gestão</p>
+
+      <form id="adminLoginForm">
+        <label for="adminEmail">Email do administrador</label>
+        <input
+          type="email"
+          id="adminEmail"
+          name="email"
+          placeholder="Introduz o teu email"
+          autocomplete="username"
+          required
+        >
+
+        <label for="adminPassword">Palavra-passe</label>
+        <input
+          type="password"
+          id="adminPassword"
+          name="password"
+          placeholder="Introduz a tua palavra-passe"
+          autocomplete="current-password"
+          required
+        >
+
+        <label for="adminKeyword">Palavra-chave de segurança</label>
+        <input
+          type="password"
+          id="adminKeyword"
+          name="keyword"
+          placeholder="Introduz a palavra-chave"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit" id="adminLoginButton">
+          ENTRAR NO PAINEL
+        </button>
+
+        <p id="adminLoginMessage" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="admin-security-note">
+        Acesso reservado ao administrador autorizado.
+      </p>
+
+      <p class="admin-footer">NGOLA-EXPRES · Gestão privada</p>
+    </section>
+  </main>
+
+
+  <!-- =====================================
+       2. DASHBOARD
+       Começa escondido até à autenticação.
+       ===================================== -->
+
+  <main id="adminDashboard" class="admin-dashboard" hidden>
+
+    <header class="dashboard-header">
+      <h1>GERENTE ADM</h1>
+      <p>NGOLA-EXPRES</p>
+      <button id="adminLogoutButton" class="logout-button">
+        Terminar sessão
+      </button>
+    </header>
+
+<!-- =========================================
+     CARTÃO DO GERENTE ADM
+     ========================================= -->
+
+<section class="dashboard-card manager-card">
+  <div class="manager-card-top">
+    <span class="manager-chip" aria-label="Chip do cartão"></span>
+    <span class="manager-valid">VALIDAT: VITALICE</span>
+  </div>
+
+  <h2>GERENTE ADM</h2>
+
+  <p class="wallet-name">NGOLA-EXPRES</p>
+
+  <p class="balance-label">SALDO PRINCIPAL</p>
+
+  <div id="adminBalanceDisplay" class="admin-balance">
+    0,00 USD
+  </div>
+</section>
+
+<!-- =========================================
+     EDIÇÃO DO SALDO — FORA DO CARTÃO
+     ========================================= -->
+
+<section class="dashboard-section balance-editor">
+  <h2>Actualizar saldo principal</h2>
+
+  <label for="adminBalanceInput">Novo saldo em USD</label>
+
+  <input
+    type="number"
+    id="adminBalanceInput"
+    min="0"
+    step="0.01"
+    placeholder="Introduz o saldo"
+  >
+
+  <button id="saveAdminBalanceButton">
+    Actualizar
+  </button>
+
+  <p id="balanceMessage" role="status">
+    Saldo ainda não ligado ao Firebase.
+  </p>
+</section>
+
+<!-- =========================================
+     MENU PRINCIPAL EM GRELHA QUADRADA
+     ========================================= -->
+
+<section class="dashboard-section">
+  <div class="dashboard-grid">
+    <button data-admin-section="agents">Agentes</button>
+    <button data-admin-section="chats">Chat</button>
+    <button data-admin-section="topups">Agentes USD</button>
+    <button data-admin-section="withdrawals">Levantamentos</button>
+    <button data-admin-section="sales">Agentes vendas</button>
+    <button data-admin-section="settings">Configurações</button>
+  </div>
+</section>
+
+    <!-- AGENTES -->
+    <section id="agentsSection" class="dashboard-section" hidden>
+      <h2>Agentes</h2>
+
+      <label for="agentSearch">Pesquisar agente</label>
+      <input id="agentSearch" type="search" placeholder="Nome, email ou telefone">
+
+      <div id="agentsList">
+        <p>Consulta de agentes ainda não ligada ao Firebase.</p>
+      </div>
+    </section>
+
+<!-- =========================================
+     CHAT GERAL — GERENTE ADM
+     Fica dentro da janela modal de Chat
+     ========================================= -->
+<section id="chatsSection" class="dashboard-section" hidden>
+
+  <div id="adminGeneralChat" class="admin-general-chat">
+
+    <header class="admin-general-chat-header">
+      <div>
+        <h2>💬 Chat Geral</h2>
+        <p>NGOLA-EXPRES · Comunicação com os agentes</p>
+      </div>
+    </header>
+
+    <div
+      id="adminGeneralChatMessages"
+      class="admin-general-chat-messages"
+      role="log"
+      aria-live="polite"
+      aria-label="Mensagens do Chat Geral"
+    >
+      <p class="admin-general-chat-empty">
+        O Chat Geral será carregado aqui.
+      </p>
+    </div>
+
+    <form id="adminGeneralChatForm" class="admin-general-chat-form">
+
+      <label for="adminGeneralChatInput" class="sr-only">
+        Escreve uma mensagem
+      </label>
+
+      <input
+        type="text"
+        id="adminGeneralChatInput"
+        maxlength="1000"
+        placeholder="Escreve uma mensagem..."
+        autocomplete="off"
+        required
+      >
+
+      <button type="submit" id="adminGeneralChatSend">
+        Enviar
+      </button>
+
+    </form>
+
+    <p
+      id="adminGeneralChatStatus"
+      class="admin-general-chat-status"
+      role="status"
+      aria-live="polite"
+    ></p>
+
+  </div>
+
+</section>
+
+    <!-- CARREGAMENTOS -->
+    <section id="topupsSection" class="dashboard-section" hidden>
+      <h2>Pedidos de carregamento USD</h2>
+      <div id="topupsList">
+        <p>Os pedidos ainda não estão ligados ao Firebase.</p>
+      </div>
+    </section>
+
+    <!-- LEVANTAMENTOS -->
+    <section id="withdrawalsSection" class="dashboard-section" hidden>
+      <h2>Levantamentos de clientes</h2>
+      <div id="withdrawalsList">
+        <p>Os levantamentos ainda não estão ligados ao Firebase.</p>
+      </div>
+    </section>
+
+    <!-- VENDAS -->
+    <section id="salesSection" class="dashboard-section" hidden>
+      <h2>Agentes vendas</h2>
+      <div id="salesList">
+        <p>Os pedidos de venda ainda não estão ligados ao Firebase.</p>
+      </div>
+    </section>
+
+    <!-- CONFIGURAÇÕES -->
+    <section id="settingsSection" class="dashboard-section" hidden>
+      <h2>Configurações</h2>
+
+      <p>Taxa de venda ao cliente: 1125 Kz/USD</p>
+      <p>Taxa de carregamento do agente: 1075 Kz/USD</p>
+      <p>Taxa de levantamento do cliente: 1050 Kz/USD</p>
+
+      <p>
+        As taxas acima são apenas informativas nesta versão.
+        Ainda não estão ligadas às operações financeiras.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- O login continua a ser tratado pelo ficheiro existente. -->
+  <script type="module" src="antonia.js"></script>
+
+  <!-- Navegação local do dashboard. -->
+  <script>
+    const sectionIds = [
+      "agentsSection",
+      "chatsSection",
+      "topupsSection",
+      "withdrawalsSection",
+      "salesSection",
+      "settingsSection"
+    ];
+
+    document.querySelectorAll("[data-admin-section]").forEach(button => {
+      button.addEventListener("click", () => {
+        sectionIds.forEach(id => {
+          document.getElementById(id).hidden = true;
+        });
+
+        const sectionMap = {
+          agents: "agentsSection",
+          chats: "chatsSection",
+          topups: "topupsSection",
+          withdrawals: "withdrawalsSection",
+          sales: "salesSection",
+          settings: "settingsSection"
+        };
+
+        const target = sectionMap[button.dataset.adminSection];
+
+        if (target) {
+          document.getElementById(target).hidden = false;
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-room]").forEach(button => {
+      button.addEventListener("click", () => {
+        const room = button.dataset.room;
+        const output = document.getElementById("selectedRoom");
+
+        output.replaceChildren();
+
+        const title = document.createElement("h3");
+        title.textContent = room;
+
+        const info = document.createElement("p");
+        info.textContent =
+          "A sala está criada visualmente. As mensagens ainda não estão ligadas ao Firebase.";
+
+        output.append(title, info);
+      });
+    });
+  </script>
+
+<!-- =========================================
+     JANELA MODAL DO PAINEL
+     ========================================= -->
+
+<div
+  id="adminModalOverlay"
+  class="admin-modal-overlay"
+  hidden
+>
+  <section
+    class="admin-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="adminModalTitle"
+  >
+
+    <header class="admin-modal-header">
+      <h2 id="adminModalTitle">Gestão</h2>
+
+      <button
+        type="button"
+        id="adminModalClose"
+        class="admin-modal-close"
+        aria-label="Fechar janela"
+      >
+        ×
+      </button>
+    </header>
+
+    <div id="adminModalContent" class="admin-modal-content"></div>
+
+  </section>
+</div>
+
+<script>
+(() => {
+  const overlay = document.getElementById("adminModalOverlay");
+  const modalTitle = document.getElementById("adminModalTitle");
+  const modalContent = document.getElementById("adminModalContent");
+  const closeButton = document.getElementById("adminModalClose");
+
+  if (!overlay || !modalTitle || !modalContent || !closeButton) return;
+
+  // Guarda as secções existentes para as mostrar dentro da janela.
+  const sections = {
+    agents: {
+      title: "Agentes",
+      id: "agentsSection"
+    },
+    chats: {
+      title: "Chat",
+      id: "chatsSection"
+    },
+    topups: {
+      title: "Agentes USD",
+      id: "topupsSection"
+    },
+    withdrawals: {
+      title: "Levantamentos",
+      id: "withdrawalsSection"
+    },
+    sales: {
+      title: "Agentes vendas",
+      id: "salesSection"
+    },
+    settings: {
+      title: "Configurações",
+      id: "settingsSection"
+    }
+  };
+
+  let activeSection = null;
+  let originalParent = null;
+  let originalNextSibling = null;
+  let previousFocus = null;
+
+  function openModal(key) {
+    const config = sections[key];
+    if (!config) return;
+
+    const section = document.getElementById(config.id);
+    if (!section) return;
+
+    // Fecha a janela anterior antes de abrir outra.
+    restoreSection();
+
+    previousFocus = document.activeElement;
+    activeSection = section;
+    originalParent = section.parentNode;
+    originalNextSibling = section.nextSibling;
+
+    modalTitle.textContent = config.title;
+
+    // Move a secção original para a janela, sem a duplicar.
+    section.hidden = false;
+    modalContent.appendChild(section);
+
+    overlay.hidden = false;
+    document.body.classList.add("admin-modal-open");
+    closeButton.focus();
+  }
+
+  function restoreSection() {
+    if (!activeSection || !originalParent) return;
+
+    activeSection.hidden = true;
+
+    if (
+      originalNextSibling &&
+      originalNextSibling.parentNode === originalParent
+    ) {
+      originalParent.insertBefore(activeSection, originalNextSibling);
+    } else {
+      originalParent.appendChild(activeSection);
+    }
+
+    activeSection = null;
+    originalParent = null;
+    originalNextSibling = null;
+  }
+
+  function closeModal() {
+    if (overlay.hidden) return;
+
+    restoreSection();
+    overlay.hidden = true;
+    document.body.classList.remove("admin-modal-open");
+
+    if (previousFocus && typeof previousFocus.focus === "function") {
+      previousFocus.focus();
+    }
+
+    previousFocus = null;
+  }
+
+  // Abre a janela ao tocar num dos seis botões.
+  document.querySelectorAll("[data-admin-section]").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      openModal(button.dataset.adminSection);
+    });
+  });
+
+  // Fecha pelo X.
+  closeButton.addEventListener("click", closeModal);
+
+  // Fecha ao tocar na área escura fora da janela.
+  overlay.addEventListener("click", event => {
+    if (event.target === overlay) {
+      closeModal();
+    }
+  });
+
+  // Fecha com a tecla Escape.
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !overlay.hidden) {
+      closeModal();
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

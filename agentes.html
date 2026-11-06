@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Área dos Agentes | NGOLA-EXPRES</title>
+
+    <link rel="stylesheet" href="agentes.css">
+</head>
+
+<body>
+
+    <header class="agent-header">
+        <div class="agent-brand">
+            <h1>NGOLA-<span>EXPRES</span></h1>
+            <p>ÁREA EXCLUSIVA DOS AGENTES</p>
+        </div>
+
+<button 
+  type="button" 
+  id="agentGeneralChatButton" 
+  class="agent-general-chat-button" 
+  aria-label="Abrir Chat Geral"
+> 
+  <span aria-hidden="true">💬</span> 
+  <span>Chat Geral</span> 
+</button>
+
+        <div class="agent-status">
+            <span class="status-indicator"></span>
+            <span id="agentAccountStatus">A verificar conta...</span>
+        </div>
+    </header>
+
+    <main class="agent-main">
+
+        <!-- CARTÃO PRINCIPAL DO AGENTE -->
+        <section class="agent-card">
+
+            <div class="agent-card-top">
+                <div>
+                    <p class="card-label">CARTEIRA DO AGENTE</p>
+                    <h2 id="agentName">Agente NGOLA-EXPRES</h2>
+                </div>
+
+                <span class="agent-badge">AGENTE</span>
+            </div>
+<div class="agent-chip" aria-label="Chip do cartão"></div>
+            <div class="agent-card-number">
+                <span>N.º DE AGENTE</span>
+                <strong id="agentNumber">A aguardar activação</strong>
+            </div>
+
+            <div class="agent-balance">
+                <span>Saldo disponível</span>
+                <strong id="agentBalance">0,00 USD</strong>
+            </div>
+
+            <div class="agent-card-bottom">
+                <div>
+                    <span>Equivalente em Kz</span>
+                    <strong id="agentBalanceKz">0,00 Kz</strong>
+                </div>
+
+                <div>
+                    <span>Saldo reservado</span>
+                    <strong id="agentReservedBalance">0,00 USD</strong>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ACÇÕES DO AGENTE -->
+        <section class="agent-actions">
+
+            <button
+                type="button"
+                class="agent-action-button"
+                id="agentTopUpButton">
+                Comprar saldo
+            </button>
+
+            <button
+                type="button"
+                class="agent-action-button secondary"
+                id="agentHistoryButton">
+                Histórico
+            </button>
+
+        </section>
+
+        <!-- PEDIDOS DE VENDA -->
+        <section class="agent-section">
+
+            <div class="agent-section-heading">
+                <h2>Pedidos de venda</h2>
+                <span id="agentPendingCount">0 pedidos</span>
+            </div>
+
+            <div id="agentPendingOrders">
+
+                <div class="agent-empty-state">
+                    <p>Não existem pedidos disponíveis neste momento.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- HISTÓRICO -->
+        <section class="agent-section" id="agentHistorySection">
+
+            <div class="agent-section-heading">
+                <h2>Histórico de operações</h2>
+            </div>
+
+            <div id="agentHistoryList">
+
+                <div class="agent-empty-state">
+                    <p>As tuas operações aparecerão aqui.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+<!-- =========================================
+     JANELA DE CARREGAMENTO DA CARTEIRA
+     ========================================= -->
+<div id="agentTopUpModal" class="agent-modal" hidden>
+    <div
+        class="agent-modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agentTopUpTitle"
+    >
+        <button
+            type="button"
+            id="agentTopUpClose"
+            class="agent-modal-close"
+            aria-label="Fechar"
+        >&times;</button>
+
+        <h2 id="agentTopUpTitle">Carregar carteira</h2>
+
+        <p>Introduz o valor que pretendes carregar.</p>
+
+        <form id="agentTopUpForm">
+
+            <!-- Valor em USD -->
+            <label for="agentTopUpAmount">Valor em USD</label>
+
+            <input
+                type="number"
+                id="agentTopUpAmount"
+                min="5"
+                max="1000"
+                step="0.01"
+                placeholder="Ex.: 50"
+                required
+            >
+
+            <small>Entre 5 USD e 1.000 USD.</small>
+
+            <!-- Conversão para Kz -->
+            <div class="agent-conversion">
+                <span>Valor a pagar</span>
+                <strong id="agentTopUpAmountKz">0,00 Kz</strong>
+                <small>Taxa: 1 USD = 1.075 Kz</small>
+            </div>
+
+            <!-- Método de pagamento -->
+            <label for="agentTopUpMethod">
+                Método de pagamento
+            </label>
+
+            <select id="agentTopUpMethod" required>
+                <option value="">Seleciona o método</option>
+                <option value="BAI">BAI</option>
+                <option value="BFA">BFA</option>
+                <option value="EXPRESS">EXPRESS</option>
+            </select>
+
+            <!-- Dados bancários: aparecem conforme a escolha -->
+            <div id="agentTopUpPaymentDetails" hidden>
+
+                <div id="agentTopUpBankNotice" hidden>
+                    <p>
+                        Use exclusivamente este IBAN se estiver a usar
+                        o mesmo banco para evitar atrasos na validação ou até perder seus fundos.
+                    </p>
+                </div>
+
+                <div id="agentTopUpIBANGroup" hidden>
+                    <label>IBAN para pagamento</label>
+
+                    <div class="agent-iban-display">
+                        <span>AO06</span>
+                        <strong id="agentTopUpIBAN"></strong>
+                    </div>
+
+                    <p>
+                        <strong>Titular:</strong>
+                        <span id="agentTopUpHolder"></span>
+                    </p>
+                </div>
+
+                <div id="agentTopUpExpressGroup" hidden>
+                    <label>Número EXPRESS</label>
+                    <p>
+                        <strong id="agentTopUpExpressNumber">
+                            923354933
+                        </strong>
+                    </p>
+                    <small>
+                        Confirma os dados antes de efetuar o pagamento.
+                    </small>
+                </div>
+
+                <!-- Referência da transferência -->
+                <label for="agentTopUpTransactionId">
+                    ID da transação/operação
+                </label>
+
+                <input
+                    type="text"
+                    id="agentTopUpTransactionId"
+                    inputmode="numeric"
+                    pattern="[0-9]{5,10}"
+                    minlength="5"
+                    maxlength="10"
+                    placeholder="Introduz 5 a 10 dígitos"
+                    required
+                >
+
+                <small>
+                    Introduz o ID que aparece no comprovativo.
+                </small>
+
+            </div>
+
+            <!-- Mensagens de estado -->
+            <p
+                id="agentTopUpMessage"
+                role="status"
+                aria-live="polite"
+            ></p>
+
+            <!-- Envio do pedido -->
+            <button
+                type="submit"
+                id="agentTopUpSubmit"
+                class="agent-action-button"
+                disabled
+            >
+                ENVIAR PEDIDO
+            </button>
+
+        </form>
+    </div>
+</div>
+    <footer class="agent-footer">
+        <p>NGOLA-EXPRES &copy; 2026</p>
+        <p>Área reservada aos agentes autorizados.</p>
+    </footer>
+
+<section 
+  id="agentGeneralChatModal" 
+  class="agent-chat-modal" 
+  role="dialog" 
+  aria-modal="true" 
+  aria-labelledby="agentGeneralChatTitle" 
+  hidden
+> 
+  <div class="agent-chat-window"> 
+    <!-- CABEÇALHO DO CHAT --> 
+    <header class="agent-chat-header"> 
+      <div> 
+        <h2 id="agentGeneralChatTitle">💬 Chat Geral</h2> 
+        <p>NGOLA-EXPRES · Suporte em tempo real</p> 
+      </div> 
+      <button 
+        type="button" 
+        id="agentGeneralChatClose" 
+        class="agent-chat-close" 
+        aria-label="Fechar chat"
+      >&times;</button> 
+    </header> 
+    
+    <!-- ÁREA ONDE APARECEM AS MENSAGENS --> 
+    <div 
+      id="agentGeneralChatMessages" 
+      class="agent-chat-messages" 
+      role="log" 
+      aria-live="polite" 
+      aria-label="Mensagens do chat geral"
+    > 
+      <p class="agent-chat-empty"> A carregar mensagens... </p> 
+    </div> 
+    
+    <!-- FORMULÁRIO PARA ENVIAR MENSAGENS --> 
+    <form id="agentGeneralChatForm" class="agent-chat-form"> 
+      <label class="agent-chat-sr-only" for="agentGeneralChatInput">Escreve uma mensagem</label> 
+      <input 
+        type="text" 
+        id="agentGeneralChatInput" 
+        maxlength="1000" 
+        placeholder="Escreve uma mensagem..." 
+        autocomplete="off" 
+        required
+      > 
+      <button type="submit" id="agentGeneralChatSend"> Enviar </button> 
+    </form> 
+    
+    <p 
+      id="agentGeneralChatStatus" 
+      class="agent-chat-status" 
+      role="status" 
+      aria-live="polite"
+    ></p> 
+  </div> 
+</section>
+
+
+    <script type="module" src="agentes.js"></script>
+
+</body>
+</html>

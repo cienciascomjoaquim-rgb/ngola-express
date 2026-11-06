@@ -1,0 +1,2360 @@
+/* =====================================================
+   NGOLA-EXPRES — CSS DO GERENTE ADM
+   BLOCO 1/2
+   Fundo, acesso, cabeçalho, cartão e menu principal
+   ===================================================== */
+
+/* =====================================================
+   1. CONFIGURAÇÕES GERAIS
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --admin-black: #030812;
+    --admin-dark: #071426;
+    --admin-panel: #09182b;
+    --admin-panel-light: #102541;
+
+    --admin-blue: #087cf0;
+    --admin-blue-light: #25b5ff;
+    --admin-blue-border: #0867cf;
+
+    --admin-gold: #e7c66f;
+    --admin-white: #f5f8ff;
+    --admin-text: #eaf2ff;
+    --admin-muted: #91afd9;
+    --admin-border: #203957;
+
+    --admin-radius: 20px;
+}
+
+html {
+    min-height: 100%;
+    background: var(--admin-black);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--admin-text);
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            #0b1b30 0%,
+            #040b16 48%,
+            #02060d 100%
+        );
+
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--admin-blue-light);
+    outline-offset: 3px;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* =====================================================
+   2. JANELA DE ACESSO DO GERENTE
+   ===================================================== */
+
+.admin-login-container {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px 16px;
+}
+
+.admin-login-card {
+    width: 100%;
+    max-width: 390px;
+
+    padding: 30px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #10223b,
+            #071221
+        );
+
+    border: 1px solid var(--admin-border);
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Logótipo do acesso */
+
+.admin-logo {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #49c7ff,
+            #0754df
+        );
+
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 24px rgba(0, 112, 255, 0.25);
+}
+
+/* Marca */
+
+.admin-brand {
+    text-align: center;
+    color: var(--admin-blue-light);
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Título */
+
+.admin-login-card h1 {
+    margin-top: 12px;
+
+    text-align: center;
+
+    color: var(--admin-white);
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+/* Descrição */
+
+.admin-description {
+    margin: 9px 0 26px;
+
+    text-align: center;
+
+    color: var(--admin-muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Formulário de acesso */
+
+#adminLoginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+#adminLoginForm label {
+    margin-top: 8px;
+
+    color: #dce8fa;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+#adminLoginForm input {
+    width: 100%;
+    min-height: 49px;
+
+    padding: 13px 14px;
+
+    border: 1px solid #294565;
+    border-radius: 12px;
+
+    background: #0c1d33;
+    color: #ffffff;
+
+    font-size: 15px;
+    outline: none;
+}
+
+#adminLoginForm input::placeholder {
+    color: #7994b7;
+}
+
+#adminLoginForm input:focus {
+    border-color: var(--admin-blue-light);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 181, 255, 0.12);
+}
+
+/* Botão de entrada */
+
+#adminLoginButton {
+    width: 100%;
+    min-height: 51px;
+
+    margin-top: 15px;
+    padding: 12px 16px;
+
+    border: 1px solid #168cff;
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #159bff,
+            #0757e8
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 850;
+    letter-spacing: 0.5px;
+
+    box-shadow:
+        0 6px 18px rgba(0, 100, 255, 0.18);
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+#adminLoginButton:active {
+    transform: scale(0.98);
+}
+
+#adminLoginButton:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Mensagem de acesso */
+
+#adminLoginMessage {
+    min-height: 18px;
+    margin-top: 5px;
+
+    color: #ff9caa;
+    font-size: 13px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+/* Aviso de segurança */
+
+.admin-security-note {
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: var(--admin-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Rodapé do acesso */
+
+.admin-footer {
+    margin-top: 20px;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--admin-border);
+
+    text-align: center;
+
+    color: #8299b9;
+    font-size: 11px;
+}
+
+/* =====================================================
+   3. PAINEL PRINCIPAL DO GERENTE
+   ===================================================== */
+
+#adminDashboard {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+    padding: 24px;
+
+    color: var(--admin-text);
+}
+
+/* Cabeçalho do painel */
+
+#adminDashboard > header,
+#adminDashboard .admin-header,
+#adminDashboard .dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid rgba(45, 102, 165, 0.25);
+}
+
+/* Marca no cabeçalho */
+
+#adminDashboard .admin-brand,
+#adminDashboard .dashboard-brand {
+    color: var(--admin-white);
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+/* Subtítulo do cabeçalho */
+
+#adminDashboard .admin-subtitle,
+#adminDashboard .dashboard-subtitle {
+    margin-top: 5px;
+
+    color: var(--admin-muted);
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* Botão terminar sessão */
+
+#adminLogoutButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: auto;
+    min-height: 42px;
+
+    margin: 0;
+    padding: 10px 16px;
+
+    border: 1px solid #203957;
+    border-radius: 12px;
+
+    background: #081526;
+    color: var(--admin-white);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+#adminLogoutButton:hover {
+    background: #102743;
+    border-color: var(--admin-blue);
+}
+
+/* =====================================================
+   4. CARTÃO DO GERENTE ADM
+   Estilo bancário preto e dourado
+   ===================================================== */
+
+#adminDashboard .manager-card,
+#adminDashboard section.manager-card,
+#adminDashboard .dashboard-card.manager-card,
+.manager-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: 100%;
+    max-width: 100%;
+
+    min-height: 245px;
+    padding: 28px;
+
+    border: 1px solid #343943;
+    border-radius: 23px;
+
+    background-color: #08090c !important;
+
+    background-image:
+        radial-gradient(
+            ellipse at 90% 0%,
+            rgba(229, 193, 104, 0.12),
+            transparent 38%
+        ),
+        linear-gradient(
+            135deg,
+            #202226 0%,
+            #101114 42%,
+            #050608 75%,
+            #17181b 100%
+        ) !important;
+
+    color: #ffffff !important;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    box-sizing: border-box;
+}
+
+/* Reflexo decorativo do cartão */
+
+#adminDashboard .manager-card::after,
+.manager-card::after {
+    content: "";
+
+    position: absolute;
+    z-index: -1;
+
+    width: 220px;
+    height: 220px;
+
+    right: -100px;
+    bottom: -135px;
+
+    border: 1px solid rgba(231, 198, 111, 0.2);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 22px rgba(231, 198, 111, 0.025),
+        0 0 0 48px rgba(231, 198, 111, 0.018);
+
+    pointer-events: none;
+}
+
+/* Parte superior do cartão */
+
+#adminDashboard .manager-card-top,
+.manager-card-top {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+/* Chip dourado */
+
+#adminDashboard .manager-chip,
+.manager-chip {
+    position: relative;
+
+    display: inline-block;
+
+    width: 45px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #f0d58c;
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 47%,
+            #b99a50 48% 50%,
+            transparent 51%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 47%,
+            #b99a50 48% 50%,
+            transparent 51%
+        ),
+        linear-gradient(
+            135deg,
+            #ffe9a2,
+            #caa64f
+        );
+
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+/* Divisões do chip */
+
+.manager-chip::before {
+    content: "";
+
+    position: absolute;
+    inset: 7px 12px;
+
+    border: 1px solid rgba(128, 95, 30, 0.75);
+    border-radius: 5px;
+
+    pointer-events: none;
+}
+
+/* Validade do cartão */
+
+#adminDashboard .manager-valid,
+.manager-valid {
+    position: relative;
+    z-index: 2;
+
+    color: #e5d7aa !important;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* Símbolo de conexão */
+
+#adminDashboard .manager-card-top::after,
+.manager-card-top::after {
+    content: ")))";
+
+    margin-left: auto;
+
+    color: var(--admin-gold);
+
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -5px;
+
+    transform: rotate(-90deg);
+}
+
+/* Título do cartão */
+
+#adminDashboard .manager-card h2,
+.manager-card h2 {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 8px;
+
+    color: #ffffff !important;
+
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+/* Nome NGOLA-EXPRES */
+
+#adminDashboard .manager-card .wallet-name,
+.manager-card .wallet-name {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 24px;
+
+    color: #d9c27f !important;
+
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+
+    overflow-wrap: anywhere;
+}
+
+/* Legenda do saldo */
+
+#adminDashboard .manager-card .balance-label,
+.manager-card .balance-label {
+    position: relative;
+    z-index: 2;
+
+    margin: 0 0 7px;
+
+    color: #b8bdc8 !important;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Valor do saldo */
+
+#adminDashboard .manager-card .admin-balance,
+.manager-card .admin-balance {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    color: #ffffff !important;
+
+    font-size: clamp(30px, 7vw, 43px);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+
+    overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   5. PAINÉIS E SECÇÕES
+   ===================================================== */
+
+#adminDashboard .dashboard-section {
+    margin-top: 24px;
+    padding: 22px;
+
+    border: 1px solid var(--admin-border);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(10, 26, 46, 0.96),
+            rgba(5, 14, 26, 0.98)
+        );
+
+    color: var(--admin-text);
+}
+
+/* Títulos das secções */
+
+#adminDashboard .dashboard-section h2 {
+    margin-bottom: 14px;
+
+    color: var(--admin-white);
+
+    font-size: 21px;
+    font-weight: 800;
+}
+
+/* Texto das secções */
+
+#adminDashboard .dashboard-section p {
+    color: #b5c8e3;
+    line-height: 1.65;
+}
+
+/* Etiquetas */
+
+#adminDashboard .dashboard-section label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #b9cce6;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* =====================================================
+   6. ATUALIZAR SALDO PRINCIPAL
+   ===================================================== */
+
+#adminDashboard .balance-editor {
+    margin-top: 24px;
+    padding: 24px;
+
+    border: 1px solid #203957;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0b192b,
+            #07111f
+        );
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Campo para atualizar saldo */
+
+#adminBalanceInput {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+
+    padding: 13px 15px;
+
+    border: 1px solid #29496e;
+    border-radius: 12px;
+
+    background: #10243d;
+    color: #ffffff;
+
+    font-size: 16px;
+}
+
+#adminBalanceInput::placeholder {
+    color: #8199b8;
+}
+
+#adminBalanceInput:focus {
+    border-color: var(--admin-blue-light);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 181, 255, 0.1);
+
+    outline: none;
+}
+
+/* Botão atualizar saldo */
+
+#saveAdminBalanceButton {
+    min-height: 50px;
+
+    padding: 12px 20px;
+
+    border: 1px solid #198dff;
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #119dff,
+            #0759e9
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+
+    box-shadow:
+        0 6px 18px rgba(0, 94, 255, 0.18);
+
+    transition:
+        transform 0.18s ease,
+        filter 0.18s ease;
+}
+
+#saveAdminBalanceButton:active {
+    transform: scale(0.98);
+}
+
+#saveAdminBalanceButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Mensagem do saldo */
+
+#balanceMessage {
+    margin-top: 12px;
+
+    color: var(--admin-muted);
+    font-size: 13px;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+/* =====================================================
+   7. TÍTULO DA ÁREA DE GESTÃO
+   ===================================================== */
+
+#adminDashboard .dashboard-heading,
+#adminDashboard .management-heading {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    margin: 30px 0 18px;
+
+    color: var(--admin-white);
+
+    font-size: 23px;
+    font-weight: 800;
+}
+
+/* =====================================================
+   8. GRELHA DOS SEIS BOTÕES PRINCIPAIS
+   ===================================================== */
+
+#adminDashboard .dashboard-grid,
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    width: 100%;
+}
+
+/* Cartões dos botões */
+
+#adminDashboard .dashboard-grid > button,
+.dashboard-grid > button {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    min-width: 0;
+    min-height: 150px;
+
+    padding: 18px;
+
+    border: 1px solid #155bb0;
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(0, 115, 255, 0.12),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #0a2341,
+            #061326
+        );
+
+    color: #f4f8ff;
+
+    font-size: 15px;
+    font-weight: 750;
+    text-align: left;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.035),
+        0 6px 16px rgba(0, 0, 0, 0.14);
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Efeito ao passar o cursor */
+
+#adminDashboard .dashboard-grid > button:hover,
+.dashboard-grid > button:hover {
+    border-color: var(--admin-blue-light);
+
+    background:
+        linear-gradient(
+            145deg,
+            #10335a,
+            #081a31
+        );
+}
+
+/* Efeito ao tocar */
+
+#adminDashboard .dashboard-grid > button:active,
+.dashboard-grid > button:active {
+    transform: scale(0.97);
+}
+
+
+/* =====================================================
+   9. ÍCONES E INDICADORES DOS BOTÕES
+   ===================================================== */
+
+/* Ícones, se o HTML já os utilizar */
+
+.dashboard-grid button img,
+.dashboard-grid button svg,
+.dashboard-grid button .icon {
+    flex-shrink: 0;
+    max-width: 54px;
+    max-height: 54px;
+}
+
+/* Espaçamento entre o ícone e o texto */
+
+.dashboard-grid button img,
+.dashboard-grid button svg {
+    margin-bottom: 12px;
+}
+
+/* Seta decorativa dos botões */
+
+.dashboard-grid > button::after {
+    content: "→";
+    display: block;
+
+    margin-top: 12px;
+
+    color: #159dff;
+    font-size: 27px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+
+/* =====================================================
+   10. ESTILO GERAL DOS CONTEÚDOS
+   ===================================================== */
+
+#adminDashboard section:not(.manager-card),
+#adminDashboard .dashboard-section {
+    color: #eaf2ff;
+}
+
+#adminDashboard input,
+#adminDashboard select,
+#adminDashboard textarea {
+    max-width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#adminDashboard input:not([type="checkbox"]):not([type="radio"]),
+#adminDashboard select,
+#adminDashboard textarea {
+    border: 1px solid #294565;
+    border-radius: 12px;
+
+    background-color: #0c1d33;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+#adminDashboard input::placeholder,
+#adminDashboard textarea::placeholder {
+    color: #8298b6;
+    opacity: 1;
+}
+
+#adminDashboard input:focus,
+#adminDashboard select:focus,
+#adminDashboard textarea:focus {
+    border-color: #159dff;
+    outline: none;
+
+    box-shadow:
+        0 0 0 3px rgba(21, 157, 255, 0.12);
+}
+
+
+/* =====================================================
+   11. BOTÕES SECUNDÁRIOS
+   ===================================================== */
+
+#adminDashboard button:not(.dashboard-grid button):not(#adminLogoutButton) {
+    -webkit-tap-highlight-color: transparent;
+}
+
+#adminDashboard .dashboard-section button,
+.admin-modal-content button {
+    min-height: 42px;
+
+    padding: 10px 15px;
+
+    border: 1px solid #1768bd;
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #117fe8,
+            #0754cf
+        );
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 750;
+
+    transition:
+        filter 0.18s ease,
+        transform 0.18s ease;
+}
+
+#adminDashboard .dashboard-section button:hover,
+.admin-modal-content button:hover {
+    filter: brightness(1.12);
+}
+
+#adminDashboard .dashboard-section button:active,
+.admin-modal-content button:active {
+    transform: scale(0.98);
+}
+
+
+/* =====================================================
+   12. JANELAS MODAIS
+   Chat, Agentes, Levantamentos, USD, Vendas e Configurações
+   ===================================================== */
+
+.admin-modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 16px;
+
+    background: rgba(0, 3, 10, 0.86);
+
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
+}
+
+.admin-modal-overlay[hidden] {
+    display: none !important;
+}
+
+/* Caixa da janela */
+
+.admin-modal {
+    position: relative;
+
+    width: 100%;
+    max-width: 650px;
+
+    max-height: 85vh;
+    max-height: 85dvh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    border: 1px solid #23476f;
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d2038,
+            #050d19
+        );
+
+    color: #eaf2ff;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    animation: adminModalIn 0.2s ease-out;
+
+    overscroll-behavior: contain;
+}
+
+/* Cabeçalho da janela */
+
+.admin-modal-header {
+    position: sticky;
+    top: 0;
+
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    padding: 17px 20px;
+
+    border-bottom: 1px solid #1d3958;
+
+    background: #0b1b30;
+}
+
+/* Título da janela */
+
+.admin-modal-header h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+/* Botão X */
+
+.admin-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+
+    border: 1px solid #34516f;
+    border-radius: 12px;
+
+    background: #142941;
+    color: #ffffff;
+
+    font-size: 27px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.admin-modal-close:hover {
+    border-color: #ff6377;
+    background: #8f2033;
+}
+
+/* Conteúdo da janela */
+
+.admin-modal-content {
+    min-width: 0;
+
+    padding: 22px;
+
+    color: #eaf2ff;
+}
+
+/* Impede o fundo de rolar com a janela aberta */
+
+body.admin-modal-open {
+    overflow: hidden;
+}
+
+/* Animação de abertura */
+
+@keyframes adminModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =====================================================
+   13. TÍTULOS E TEXTOS DENTRO DAS JANELAS
+   ===================================================== */
+
+.admin-modal-content h1,
+.admin-modal-content h2,
+.admin-modal-content h3 {
+    margin-bottom: 13px;
+
+    color: #f5f8ff;
+
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-modal-content h2 {
+    font-size: 20px;
+}
+
+.admin-modal-content h3 {
+    font-size: 16px;
+}
+
+.admin-modal-content p {
+    margin-bottom: 12px;
+
+    color: #b8cbe5;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-modal-content label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #c5d6ed;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.admin-modal-content input:not([type="checkbox"]):not([type="radio"]),
+.admin-modal-content select,
+.admin-modal-content textarea {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+
+    min-height: 45px;
+
+    margin-bottom: 14px;
+    padding: 11px 13px;
+
+    border: 1px solid #294565;
+    border-radius: 11px;
+
+    background: #0b1b30;
+    color: #ffffff;
+
+    font-size: 15px;
+}
+
+.admin-modal-content textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.admin-modal-content input[type="checkbox"],
+.admin-modal-content input[type="radio"] {
+    accent-color: #159dff;
+}
+
+
+/* =====================================================
+   14. LISTAS DE AGENTES E REGISTOS
+   ===================================================== */
+
+#agentsSection,
+#chatsSection,
+#topupsSection,
+#withdrawalsSection,
+#salesSection,
+#settingsSection {
+    min-width: 0;
+    color: #eaf2ff;
+}
+
+/* Listas */
+
+.admin-modal-content ul,
+.admin-modal-content ol {
+    padding-left: 22px;
+    margin-bottom: 15px;
+}
+
+.admin-modal-content li {
+    margin-bottom: 9px;
+
+    color: #c5d6ed;
+
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+/* Cartões de informação, caso existam no HTML */
+
+.admin-modal-content .item-card,
+.admin-modal-content .agent-card,
+.admin-modal-content .record-card,
+.admin-modal-content .info-card {
+    min-width: 0;
+
+    margin-bottom: 12px;
+    padding: 15px;
+
+    border: 1px solid #223f60;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #10233b,
+            #091629
+        );
+
+    overflow-wrap: anywhere;
+}
+
+/* Separadores */
+
+.admin-modal-content hr {
+    margin: 17px 0;
+
+    border: 0;
+    border-top: 1px solid #203957;
+}
+
+
+/* =====================================================
+   15. TABELAS DE REGISTOS E VENDAS
+   ===================================================== */
+
+. table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    color: #eaf2ff;
+    font-size: 13px;
+}
+
+. th,
+. td {
+    padding: 11px 10px;
+
+    border-bottom: 1px solid #203957;
+
+    text-align: left;
+    vertical-align: top;
+
+    overflow-wrap: anywhere;
+}
+
+. th {
+    background: #102541;
+    color: #b8d8ff;
+
+    font-weight: 800;
+}
+
+.admin-modal-content tr:hover td {
+    background: rgba(19, 71, 119, 0.15);
+}
+
+/* Permite consultar tabelas largas no telemóvel */
+
+.admin-modal-content .table-container,
+.admin-modal-content .table-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #203957;
+    border-radius: 12px;
+}
+
+
+/* =====================================================
+   16. CHAT
+   ===================================================== */
+
+/* Área de mensagens */
+
+#chatsSection .chat-messages,
+#chatsSection .messages-list,
+#chatsSection .chat-list {
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #203957;
+    border-radius: 14px;
+
+    background: #071426;
+}
+
+/* Mensagem individual, se esta classe existir */
+
+#chatsSection .message,
+#chatsSection .chat-message {
+    max-width: 100%;
+
+    margin-bottom: 10px;
+    padding: 12px;
+
+    border: 1px solid #244568;
+    border-radius: 12px;
+
+    background: #102541;
+
+    color: #eaf2ff;
+
+    overflow-wrap: anywhere;
+}
+
+/* Área para escrever mensagens */
+
+#chatsSection textarea,
+#chatsSection input {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Botões das salas de chat */
+
+#chatsSection [data-room] {
+    margin: 4px;
+    padding: 10px 13px;
+
+    border: 1px solid #24568a;
+    border-radius: 10px;
+
+    background: #102541;
+    color: #d9eaff;
+}
+
+#chatsSection [data-room]:hover,
+#chatsSection [data-room]:focus-visible {
+    border-color: #25b5ff;
+    background: #14365b;
+}
+
+
+/* =====================================================
+   17. LEVANTAMENTOS E MOVIMENTOS
+   ===================================================== */
+
+#withdrawalsSection input,
+#withdrawalsSection select,
+#withdrawalsSection textarea,
+#topupsSection input,
+#topupsSection select,
+#topupsSection textarea {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Valores financeiros */
+
+.admin-modal-content .amount,
+.admin-modal-content .money-value,
+.admin-modal-content .balance-value {
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+/* Estados, caso estas classes existam */
+
+.admin-modal-content .status,
+.admin-modal-content .transaction-status {
+    display: inline-block;
+
+    max-width: 100%;
+
+    padding: 5px 9px;
+
+    border: 1px solid #315273;
+    border-radius: 8px;
+
+    background: #112943;
+    color: #c5ddfa;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   18. CONFIGURAÇÕES
+   ===================================================== */
+
+#settingsSection input,
+#settingsSection select,
+#settingsSection textarea {
+    width: 100%;
+    min-width: 0;
+}
+
+#settingsSection label {
+    margin-top: 10px;
+}
+
+#settingsSection button {
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   19. MENSAGENS DE ESTADO
+   ===================================================== */
+
+#adminDashboard .error,
+.admin-modal-content .error {
+    color: #ff9da8;
+}
+
+#adminDashboard .success,
+.admin-modal-content .success {
+    color: #7ee0b0;
+}
+
+#adminDashboard .warning,
+.admin-modal-content .warning {
+    color: #f1d58d;
+}
+
+
+/* =====================================================
+   20. RODAPÉ DO PAINEL
+   ===================================================== */
+
+#adminDashboard footer {
+    margin-top: 32px;
+    padding: 20px 0;
+
+    border-top: 1px solid #203957;
+
+    color: #8ca8cf;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   21. ADAPTAÇÃO PARA TELEMÓVEIS
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    #adminDashboard {
+        padding: 16px;
+    }
+
+    #adminDashboard > header,
+    #adminDashboard .admin-header,
+    #adminDashboard .dashboard-header {
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    #adminDashboard .admin-brand,
+    #adminDashboard .dashboard-brand {
+        font-size: 16px;
+        letter-spacing: 1.3px;
+    }
+
+    #adminDashboard .admin-subtitle,
+    #adminDashboard .dashboard-subtitle {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    #adminLogoutButton {
+        min-height: 38px;
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    /* Cartão do gerente */
+
+    #adminDashboard .manager-card,
+    #adminDashboard section.manager-card,
+    #adminDashboard .dashboard-card.manager-card,
+    .manager-card {
+        width: 100%;
+        max-width: 390px;
+
+        min-height: 225px;
+
+        margin-left: auto;
+        margin-right: auto;
+
+        padding: 22px;
+
+        border-radius: 20px;
+    }
+
+    .manager-card-top {
+        margin-bottom: 20px;
+    }
+
+    .manager-card h2 {
+        font-size: clamp(21px, 6vw, 27px);
+        letter-spacing: 1px;
+    }
+
+    .manager-card .wallet-name {
+        margin-bottom: 21px;
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .manager-card .balance-label {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .manager-card .admin-balance {
+        font-size: clamp(29px, 8vw, 38px);
+    }
+
+    /* Editor do saldo */
+
+    #adminDashboard .balance-editor {
+        padding: 18px;
+        border-radius: 17px;
+    }
+
+    /* Menu */
+
+    #adminDashboard .dashboard-grid,
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 11px;
+    }
+
+    #adminDashboard .dashboard-grid > button,
+    .dashboard-grid > button {
+        min-height: 125px;
+        padding: 14px;
+
+        border-radius: 16px;
+
+        font-size: 13px;
+    }
+
+    .dashboard-grid button img,
+    .dashboard-grid button svg {
+        max-width: 44px;
+        max-height: 44px;
+    }
+
+    /* Janelas */
+
+    .admin-modal-overlay {
+        align-items: center;
+        padding: 10px;
+    }
+
+    .admin-modal {
+        width: 100%;
+        max-width: 100%;
+
+        max-height: 90vh;
+        max-height: 90dvh;
+
+        border-radius: 17px;
+    }
+
+    .admin-modal-header {
+        padding: 14px;
+    }
+
+    .admin-modal-header h2 {
+        font-size: 18px;
+    }
+
+    .admin-modal-content {
+        padding: 15px;
+    }
+
+    .admin-modal-content th,
+    .admin-modal-content td {
+        padding: 9px 7px;
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================================
+   22. TELEMÓVEIS MUITO PEQUENOS
+   ===================================================== */
+
+@media (max-width: 360px) {
+
+    #adminDashboard {
+        padding: 11px;
+    }
+
+    #adminDashboard .manager-card,
+    #adminDashboard section.manager-card,
+    #adminDashboard .dashboard-card.manager-card,
+    .manager-card {
+        padding: 18px;
+        min-height: 210px;
+    }
+
+    .manager-chip {
+        width: 39px;
+        height: 30px;
+    }
+
+    .manager-valid {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    #adminDashboard .dashboard-grid,
+    .dashboard-grid {
+        gap: 8px;
+    }
+
+    #adminDashboard .dashboard-grid > button,
+    .dashboard-grid > button {
+        min-height: 112px;
+        padding: 11px;
+
+        font-size: 12px;
+    }
+
+    .admin-modal-content {
+        padding: 12px;
+    }
+}
+
+
+/* =====================================================
+   23. ACESSIBILIDADE E MOVIMENTO
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   CARTÕES DE AGENTES — NGOLA-EXPRES
+   ========================================= */
+
+.agent-item {
+    background: #0b1c30;
+    color: #f4f7ff;
+    border: 1px solid #294766;
+    border-radius: 18px;
+    padding: 20px;
+    margin: 16px 0;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
+.agent-item h3 {
+    color: #ffffff;
+    font-size: 20px;
+    margin: 0 0 18px;
+    overflow-wrap: anywhere;
+}
+
+.agent-item p {
+    color: #d4deed;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+.agent-item p strong {
+    color: #ffffff;
+}
+
+.agent-balance {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background: #132b46;
+    border: 1px solid #355675;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.agent-balance span {
+    color: #d4deed;
+}
+
+.agent-balance strong {
+    color: #79e6a1;
+    font-size: 20px;
+}
+
+/* Organização dos botões */
+.agent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.agent-actions button {
+    flex: 1 1 100px;
+    min-height: 46px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Ativar — verde */
+.agent-actions .agent-btn-activate {
+    background: #168447;
+    color: #ffffff;
+}
+
+/* Desativar — preto */
+.agent-actions .agent-btn-deactivate {
+    background: #111111;
+    color: #ffffff;
+}
+
+/* Bloquear — vermelho */
+.agent-actions .agent-btn-block {
+    background: #c62828;
+    color: #ffffff;
+}
+
+.agent-actions button:focus-visible {
+    outline: 3px solid #8ecaff;
+    outline-offset: 3px;
+}
+
+/* ===================================================== 
+   NGOLA-EXPRES — CARTÕES DO CHAT AGENTES USD 
+   Estilo único, compacto e organizado 
+===================================================== */ 
+
+/* Cartão do pedido */ 
+.cartao-principal.topup-request-card { 
+  width: 100%; 
+  max-width: 420px; 
+  height: auto; 
+  min-height: 0; 
+  margin: 10px auto; 
+  padding: 16px; 
+  box-sizing: border-box; 
+  color: #ffffff; 
+  background: linear-gradient( 
+    135deg, 
+    #0b4fe7 0%, 
+    #061d5e 50%, 
+    #020b24 100% 
+  ); 
+  border: 1px solid rgba(59, 130, 246, 0.4); 
+  border-radius: 16px; 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+  position: relative; 
+  overflow: hidden; 
+} 
+
+/* Brilho discreto */ 
+.cartao-principal.topup-request-card::before { 
+  content: ""; 
+  position: absolute; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%; 
+  background: linear-gradient( 
+    135deg, 
+    rgba(255, 255, 255, 0.10) 0%, 
+    rgba(255, 255, 255, 0.03) 40%, 
+    transparent 60% 
+  ); 
+  pointer-events: none; 
+  transform: rotate(20deg); 
+} 
+
+.topup-card-content { 
+  position: relative; 
+  z-index: 1; 
+  width: 100%; 
+} 
+
+.topup-card-heading { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  flex-wrap: wrap; 
+  gap: 8px; 
+  margin-bottom: 10px; 
+} 
+
+.topup-card-brand { 
+  color: #ffffff; 
+  font-size: 10px; 
+  font-weight: 800; 
+  letter-spacing: 1px; 
+} 
+
+.cartao-principal.topup-request-card h3 { 
+  margin: 0 0 12px; 
+  color: #ffffff; 
+  font-size: 16px; 
+} 
+
+.cartao-principal.topup-request-card p { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 3px; 
+  margin: 8px 0; 
+  color: #ffffff; 
+  font-size: 12px; 
+  line-height: 1.4; 
+  overflow-wrap: anywhere; 
+} 
+
+.cartao-principal.topup-request-card p span { 
+  color: #c6d9ff; 
+  font-size: 11px; 
+} 
+
+.cartao-principal.topup-request-card p strong { 
+  color: #ffffff; 
+  font-size: 13px; 
+  overflow-wrap: anywhere; 
+} 
+
+/* Estado do pedido */ 
+.topup-status { 
+  padding: 5px 8px; 
+  border-radius: 20px; 
+  font-size: 9px; 
+  font-weight: 800; 
+} 
+
+.topup-status-pending { 
+  color: #fff2b0; 
+  background: #72530b; 
+  border: 1px solid #e9c65b; 
+} 
+
+.topup-status-confirmed { 
+  color: #d6ffe5; 
+  background: #12643a; 
+  border: 1px solid #48d58a; 
+} 
+
+.topup-status-denied { 
+  color: #ffe0e0; 
+  background: #8d2020; 
+  border: 1px solid #ff7777; 
+} 
+
+/* Área dos botões */ 
+.topup-card-actions { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: 14px; 
+  padding-top: 12px; 
+  border-top: 1px solid rgba(255, 255, 255, 0.2); 
+} 
+
+/* Estilo comum dos botões */ 
+.topup-card-actions button { 
+  flex: 1; 
+  min-width: 0; 
+  min-height: 42px; 
+  padding: 10px 8px; 
+  border: none; 
+  border-radius: 9px; 
+  color: #ffffff !important; 
+  font-size: 12px; 
+  font-weight: 800; 
+  cursor: pointer; 
+} 
+
+/* CONFIRMAR — VERDE */ 
+.topup-card-actions button.topup-btn-confirm { 
+  background: #168447 !important; 
+  color: #ffffff !important; 
+} 
+
+/* NEGAR — VERMELHO */ 
+.topup-card-actions button.topup-btn-deny { 
+  background: #c62828 !important; 
+  color: #ffffff !important; 
+} 
+
+/* Interação */ 
+.topup-card-actions button.topup-btn-confirm:hover { 
+  background: #116b38 !important; 
+} 
+
+.topup-card-actions button.topup-btn-deny:hover { 
+  background: #a51f1f !important; 
+} 
+
+.topup-card-actions button:disabled { 
+  opacity: 0.6; 
+  cursor: wait; 
+} 
+
+.topup-card-actions button:focus-visible { 
+  outline: 2px solid #ffffff; 
+  outline-offset: 3px; 
+} 
+
+/* Mensagem quando não existem pedidos */ 
+.topup-empty { 
+  padding: 20px 12px; 
+  color: #cbd5e1; 
+  text-align: center; 
+  line-height: 1.5; 
+} 
+
+/* Ajustes para telemóveis */ 
+@media (max-width: 480px) { 
+  .cartao-principal.topup-request-card { 
+    max-width: 100%; 
+    padding: 14px; 
+  } 
+  
+  .cartao-principal.topup-request-card h3 { 
+    font-size: 15px; 
+  } 
+  
+  .cartao-principal.topup-request-card p strong { 
+    font-size: 12px; 
+  } 
+  
+  .topup-card-actions button { 
+    min-height: 44px; 
+    font-size: 11px; 
+  } 
+}
+
+/* ===================================================== 
+   CHAT GERAL — NGOLA-EXPRES 
+   Aparência profissional do chat do administrador 
+===================================================== */ 
+
+#chatsSection { 
+  width: 100%; 
+  max-width: 100%; 
+  box-sizing: border-box; 
+  padding: 0; 
+  background: transparent; 
+} 
+
+/* Caixa principal do chat */ 
+#adminGeneralChat { 
+  width: 100%; 
+  max-width: 850px; 
+  margin: 0 auto; 
+  overflow: hidden; 
+  border: 1px solid #263449; 
+  border-radius: 18px; 
+  background: #080d16; 
+  color: #f1f5f9; 
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.35); 
+  box-sizing: border-box; 
+} 
+
+/* Cabeçalho */ 
+#adminGeneralChat .admin-general-chat-header { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 20px; 
+  background: linear-gradient(135deg, #101b2d, #0b1220); 
+  border-bottom: 1px solid #263449; 
+} 
+
+#adminGeneralChat .admin-general-chat-header h2 { 
+  margin: 0; 
+  color: #ffffff; 
+  font-size: 21px; 
+  font-weight: 700; 
+} 
+
+#adminGeneralChat .admin-general-chat-header p { 
+  margin: 7px 0 0; 
+  color: #94a3b8; 
+  font-size: 13px; 
+} 
+
+/* Área onde aparecem as mensagens */ 
+#adminGeneralChatMessages { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 12px; 
+  min-height: 300px; 
+  max-height: 440px; 
+  overflow-y: auto; 
+  padding: 20px; 
+  background: #05080f; 
+  box-sizing: border-box; 
+  scroll-behavior: smooth; 
+} 
+
+/* Mensagem de chat vazia com espaçamento correto */ 
+#adminGeneralChatMessages .admin-general-chat-empty { 
+  margin: auto; 
+  padding: 210px 125px; /* 60px em cima/baixo e apenas 20px nas laterais */
+  color: #94a3b8; 
+  text-align: center; 
+  font-size: 14px; 
+}
+
+
+/* Formulário para enviar mensagens */ 
+#adminGeneralChatForm { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 16px; 
+  background: #0b1220; 
+  border-top: 1px solid #263449; 
+  box-sizing: border-box; 
+} 
+
+/* Campo de texto */ 
+#adminGeneralChatInput { 
+  flex: 1; 
+  min-width: 0; 
+  min-height: 48px; 
+  padding: 12px 15px; 
+  border: 1px solid #334155; 
+  border-radius: 12px; 
+  outline: none; 
+  background: #111827; 
+  color: #ffffff; 
+  font-size: 15px; 
+  box-sizing: border-box; 
+} 
+
+#adminGeneralChatInput::placeholder { 
+  color: #94a3b8; 
+} 
+
+#adminGeneralChatInput:focus { 
+  border-color: #38bdf8; 
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); 
+} 
+
+/* Botão Enviar */ 
+#adminGeneralChatSend { 
+  min-height: 48px; 
+  padding: 0 20px; 
+  border: none; 
+  border-radius: 12px; 
+  background: #16a34a; 
+  color: #ffffff; 
+  font-size: 14px; 
+  font-weight: 700; 
+  cursor: pointer; 
+  transition: background 0.2s ease, transform 0.2s ease; 
+} 
+
+#adminGeneralChatSend:hover { 
+  background: #15803d; 
+} 
+
+#adminGeneralChatSend:active { 
+  transform: scale(0.97); 
+} 
+
+/* Mensagens de estado */ 
+#adminGeneralChatStatus { 
+  margin: 0; 
+  padding: 0 16px 12px; 
+  background: #0b1220; 
+  color: #94a3b8; 
+  font-size: 12px; 
+} 
+
+/* Barra de deslocamento */ 
+#adminGeneralChatMessages::-webkit-scrollbar { 
+  width: 7px; 
+} 
+
+#adminGeneralChatMessages::-webkit-scrollbar-track { 
+  background: #080d16; 
+} 
+
+#adminGeneralChatMessages::-webkit-scrollbar-thumb { 
+  border-radius: 10px; 
+  background: #334155; 
+} 
+
+/* Acessibilidade: texto oculto visualmente */ 
+#adminGeneralChat .sr-only { 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  white-space: nowrap; 
+  border: 0; 
+} 
+
+/* Adaptação para telemóveis */ 
+@media (max-width: 600px) { 
+  #adminGeneralChat { 
+    border-radius: 12px; 
+  } 
+  
+  #adminGeneralChat .admin-general-chat-header { 
+    padding: 16px; 
+  } 
+  
+  #adminGeneralChatMessages { 
+    min-height: 260px; 
+    max-height: 55vh; 
+    padding: 14px; 
+  } 
+  
+  #adminGeneralChatForm { 
+    gap: 8px; 
+    padding: 12px; 
+  } 
+  
+  #adminGeneralChatInput { 
+    min-height: 46px; 
+    padding: 10px; 
+    font-size: 14px; 
+  } 
+  
+  #adminGeneralChatSend { 
+    min-height: 46px; 
+    padding: 0 14px; 
+  } 
+}
+/* ===================================================== 
+   CHAT GERAL — JANELA MAIS ABERTA 
+===================================================== */ 
+
+/* Aumenta a largura da janela do chat */ 
+#adminGeneralChat { 
+  width: 100%; 
+  max-width: 1100px; 
+  margin: 0 auto; 
+} 
+
+/* Aumenta a área de visualização das mensagens */ 
+#adminGeneralChatMessages { 
+  min-height: 450px; 
+  max-height: 65vh; 
+  padding: 24px; 
+} 
+
+/* Dá mais espaço ao cabeçalho */ 
+#adminGeneralChat .admin-general-chat-header { 
+  padding: 24px; 
+} 
+
+/* Dá mais espaço ao campo de escrita */ 
+#adminGeneralChatForm { 
+  padding: 20px; 
+} 
+
+/* Adaptação para telemóveis */ 
+@media (max-width: 600px) { 
+  #adminGeneralChatMessages { 
+    min-height: 350px; 
+    max-height: 55vh; 
+    padding: 14px; 
+  } 
+  
+  #adminGeneralChat .admin-general-chat-header { 
+    padding: 16px; 
+  } 
+  
+  #adminGeneralChatForm { 
+    padding: 12px; 
+  } 
+}
+
+
+/* ===================================================== 
+   NGOLA-EXPRES — CHAT GERAL EM ECRÃ AMPLO 
+   Aumenta apenas o modal quando o Chat está aberto 
+   ===================================================== */ 
+
+/* O modal ocupa quase todo o ecrã quando contém o Chat */ 
+#adminModalOverlay:has(#chatsSection) .admin-modal { 
+  width: 98vw !important; 
+  max-width: 1600px !important; 
+  height: 94vh !important; 
+  height: 94dvh !important; 
+  max-height: 94vh !important; 
+  max-height: 94dvh !important; 
+  display: flex; 
+  flex-direction: column; 
+} 
+
+/* O conteúdo interno utiliza o espaço disponível */ 
+#adminModalOverlay:has(#chatsSection) .admin-modal-content { 
+  flex: 1; 
+  min-height: 0; 
+  overflow: auto; 
+  padding: 16px; 
+} 
+
+/* A caixa do Chat ocupa toda a largura disponível */ 
+#adminModalOverlay:has(#chatsSection) #adminGeneralChat { 
+  width: 100% !important; 
+  max-width: none !important; 
+  height: 100%; 
+  margin: 0 auto; 
+  display: flex; 
+  flex-direction: column; 
+} 
+
+/* A área das mensagens cresce com a janela */ 
+#adminModalOverlay:has(#chatsSection) #adminGeneralChatMessages { 
+  min-height: 0 !important; 
+  max-height: none !important; 
+  flex: 1; 
+  overflow-y: auto; 
+} 
+
+/* Organização vertical do Chat */ 
+#adminModalOverlay:has(#chatsSection) #adminGeneralChatForm { 
+  flex-shrink: 0; 
+} 
+
+/* Adaptação para telemóveis */ 
+@media (max-width: 600px) { 
+  #adminModalOverlay:has(#chatsSection) .admin-modal { 
+    width: 100% !important; 
+    max-width: none !important; 
+    height: 96vh !important; 
+    height: 96dvh !important; 
+    max-height: 96vh !important; 
+    max-height: 96dvh !important; 
+    border-radius: 12px; 
+  } 
+
+  #adminModalOverlay:has(#chatsSection) .admin-modal-content { 
+    padding: 8px; 
+  } 
+}
+

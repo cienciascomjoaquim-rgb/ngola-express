@@ -1,0 +1,1455 @@
+/* =========================================
+   NGOLA-EXPRES — ÁREA DOS AGENTES
+   ========================================= */
+
+:root {
+    --agent-bg: #0d0e10;
+    --agent-card: #17191d;
+    --agent-gold: #e4c36f;
+    --agent-green: #20c879;
+    --agent-text: #ffffff;
+    --agent-muted: #a4a7ad;
+    --agent-border: #303238;
+    --agent-red: #ff5b62;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--agent-bg);
+    color: var(--agent-text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CABEÇALHO */
+
+.agent-header {
+    width: 100%;
+    min-height: 80px;
+    padding: 17px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    border-bottom: 1px solid var(--agent-border);
+    background: #111214;
+}
+
+.agent-brand h1 {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.agent-brand h1 span {
+    color: var(--agent-gold);
+}
+
+.agent-brand p {
+    margin-top: 6px;
+    color: var(--agent-muted);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.agent-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--agent-muted);
+    font-size: 11px;
+}
+
+.status-indicator {
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #858585;
+}
+
+/* CONTEÚDO */
+
+.agent-main {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 16px 35px;
+}
+
+/* CARTÃO ROXO E MAGENTA */
+
+.agent-card {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 410px;
+    min-height: 0;
+    margin: 0 auto 24px;
+    padding: 19px 21px;
+    overflow: hidden;
+    border: 1px solid rgba(245, 119, 221, 0.75);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            125deg,
+            transparent 0 49%,
+            rgba(255, 135, 225, 0.32) 49.5% 52%,
+            rgba(120, 22, 133, 0.1) 52.5% 56%,
+            transparent 56.5%
+        ),
+        linear-gradient(
+            145deg,
+            #29206f 0%,
+            #6f126f 35%,
+            #d51b91 65%,
+            #5b145f 100%
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.35),
+        inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* PADRÃO GEOMÉTRICO */
+
+.agent-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(
+            30deg,
+            transparent 24%,
+            rgba(255, 255, 255, 0.10) 25%,
+            rgba(255, 255, 255, 0.10) 26%,
+            transparent 27%,
+            transparent 74%,
+            rgba(0, 0, 0, 0.12) 75%,
+            rgba(0, 0, 0, 0.12) 76%,
+            transparent 77%
+        ),
+        linear-gradient(
+            150deg,
+            transparent 24%,
+            rgba(255, 255, 255, 0.08) 25%,
+            rgba(255, 255, 255, 0.08) 26%,
+            transparent 27%,
+            transparent 74%,
+            rgba(0, 0, 0, 0.10) 75%,
+            rgba(0, 0, 0, 0.10) 76%,
+            transparent 77%
+        );
+
+    background-size: 38px 38px;
+    opacity: 0.8;
+}
+
+/* BRILHO DECORATIVO */
+
+.agent-card::after {
+    content: "";
+    position: absolute;
+    top: -65px;
+    right: -75px;
+    z-index: -1;
+    width: 170px;
+    height: 170px;
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* TOPO */
+
+.agent-card-top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.card-label {
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.agent-card-top h2 {
+    font-size: 14px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.agent-badge {
+    padding: 6px 9px;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 5px;
+    color: #ffffff;
+    background: rgba(48, 16, 74, 0.25);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* NÚMERO DO AGENTE */
+
+.agent-card-number {
+    position: relative;
+    z-index: 1;
+    margin-top: 17px;
+}
+
+.agent-card-number span,
+.agent-card-bottom span {
+    display: block;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 9px;
+    letter-spacing: 0.8px;
+}
+
+.agent-card-number strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    overflow-wrap: anywhere;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+/* CHIP DOURADO */
+
+.agent-chip {
+    position: relative;
+    z-index: 1;
+    width: 39px;
+    height: 29px;
+    margin-top: 11px;
+    overflow: hidden;
+    border: 1px solid rgba(133, 92, 26, 0.65);
+    border-radius: 6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 31%,
+            rgba(143, 101, 32, 0.6) 32% 34%,
+            transparent 35% 65%,
+            rgba(143, 101, 32, 0.6) 66% 68%,
+            transparent 69%
+        ),
+        linear-gradient(
+            0deg,
+            transparent 31%,
+            rgba(143, 101, 32, 0.6) 32% 35%,
+            transparent 36% 64%,
+            rgba(143, 101, 32, 0.6) 65% 68%,
+            transparent 69%
+        ),
+        linear-gradient(135deg, #fff1a8, #d8ad45 55%, #f9df86);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.8),
+        0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* SALDO */
+
+.agent-balance {
+    position: relative;
+    z-index: 1;
+    margin-top: 12px;
+}
+
+.agent-balance span {
+    display: block;
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 10px;
+}
+
+.agent-balance strong {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* RODAPÉ DO CARTÃO */
+
+.agent-card-bottom {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.agent-card-bottom > div {
+    min-width: 0;
+}
+
+.agent-card-bottom strong {
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+/* BOTÕES */
+
+.agent-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 30px;
+}
+
+.agent-action-button {
+    min-height: 46px;
+    padding: 11px 12px;
+    border: 1px solid var(--agent-green);
+    border-radius: 10px;
+    background: var(--agent-green);
+    color: #07180f;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.agent-action-button.secondary {
+    border-color: var(--agent-border);
+    background: #202226;
+    color: var(--agent-text);
+}
+
+.agent-action-button:active {
+    opacity: 0.8;
+}
+
+/* SECÇÕES */
+
+.agent-section {
+    margin-bottom: 28px;
+}
+
+.agent-section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.agent-section-heading h2 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.agent-section-heading > span {
+    color: var(--agent-gold);
+    font-size: 12px;
+}
+
+/* PEDIDOS E HISTÓRICO */
+
+.agent-empty-state {
+    padding: 23px 16px;
+    border: 1px dashed var(--agent-border);
+    border-radius: 12px;
+    background: #121316;
+    text-align: center;
+}
+
+.agent-empty-state p {
+    color: var(--agent-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* RODAPÉ */
+
+.agent-footer {
+    padding: 20px 15px;
+    border-top: 1px solid var(--agent-border);
+    text-align: center;
+}
+
+.agent-footer p {
+    margin: 5px 0;
+    color: var(--agent-muted);
+    font-size: 11px;
+}
+
+/* TELEMÓVEIS */
+
+@media (max-width: 480px) {
+    .agent-header {
+        padding: 16px 14px;
+        gap: 10px;
+    }
+
+    .agent-brand h1 {
+        font-size: 18px;
+    }
+
+    .agent-brand p {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .agent-status {
+        font-size: 9px;
+    }
+
+    .agent-main {
+        padding: 20px 14px 28px;
+    }
+
+    .agent-card {
+        width: 100%;
+        max-width: 390px;
+        padding: 18px 19px;
+        border-radius: 15px;
+    }
+
+    .agent-card-top h2 {
+        font-size: 13px;
+    }
+
+    .agent-card-number strong {
+        font-size: 13px;
+    }
+
+    .agent-balance strong {
+        font-size: 21px;
+    }
+
+    .agent-card-bottom {
+        gap: 8px;
+    }
+
+    .agent-card-bottom strong {
+        font-size: 10px;
+    }
+
+    .agent-actions {
+        gap: 8px;
+    }
+
+    .agent-action-button {
+        padding: 11px 7px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   NGOLA-EXPRES — JANELA MODAL CENTRALIZADA
+   Aparece por cima da página sem deslocar
+   o conteúdo da área dos agentes.
+   ========================================= */
+
+/* Esconder completamente a janela quando fechada */
+.agent-modal[hidden] {
+    display: none !important;
+}
+
+/* Fundo fixo sobre todo o ecrã */
+.agent-modal:not([hidden]) {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    padding: 16px !important;
+    background: rgba(0, 0, 0, 0.78) !important;
+
+    overflow-y: auto !important;
+    z-index: 99999 !important;
+}
+
+/* Caixa da janela */
+.agent-modal-content {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 480px !important;
+    max-height: calc(100% - 32px) !important;
+
+    margin: auto !important;
+    box-sizing: border-box !important;
+
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+}
+
+/* =========================================
+   NGOLA-EXPRES — FORMATAÇÃO PROFISSIONAL
+   Janela de carregamento da carteira
+   ========================================= */
+
+/* Caixa principal */
+.agent-modal:not([hidden]) .agent-modal-content {
+    width: min(100%, 460px) !important;
+    margin: auto !important;
+    padding: 26px 22px !important;
+
+    background: #ffffff !important;
+    color: #202124 !important;
+
+    border: 1px solid #e0e0e0;
+    border-radius: 22px !important;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box !important;
+}
+
+/* Título da janela */
+#agentTopUpTitle {
+    margin: 0 38px 12px 0;
+    color: #111827;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+/* Texto de apresentação */
+.agent-modal-content > p {
+    color: #6b7280;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Formulário */
+#agentTopUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Nomes dos campos */
+#agentTopUpForm label {
+    display: block;
+    margin-top: 10px;
+    color: #252b33;
+    font-size: 14px;
+    font-weight: 750;
+}
+
+/* Campos de preenchimento */
+#agentTopUpForm input,
+#agentTopUpForm select {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    padding: 13px 14px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+
+    background: #f8fafc;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    box-sizing: border-box;
+}
+
+/* Realce ao seleccionar um campo */
+#agentTopUpForm input:focus,
+#agentTopUpForm select:focus {
+    outline: none;
+    border-color: #19bd7a;
+    box-shadow: 0 0 0 3px rgba(25, 189, 122, 0.14);
+}
+
+/* Textos auxiliares */
+#agentTopUpForm small {
+    display: block;
+    margin-top: 3px;
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* =========================================
+   VALOR DA CONVERSÃO
+   ========================================= */
+
+.agent-conversion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin: 8px 0 14px;
+    padding: 17px;
+
+    border: 1px solid #b7efd5;
+    border-radius: 15px;
+
+    background: #effbf5;
+}
+
+.agent-conversion span {
+    color: #47705d;
+    font-size: 13px;
+}
+
+.agent-conversion strong {
+    color: #087b4a;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* =========================================
+   DADOS BANCÁRIOS
+   ========================================= */
+
+/* Área dos detalhes de pagamento */
+#agentTopUpPaymentDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    width: 100%;
+}
+
+#agentTopUpPaymentDetails[hidden] {
+    display: none !important;
+}
+
+/* Aviso bancário */
+#agentTopUpBankNotice {
+    padding: 13px 15px;
+    border: 1px solid #f1dfaa;
+    border-radius: 12px;
+
+    background: #fff8e7;
+    color: #805d18;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Rótulos dos dados bancários */
+#agentTopUpIBANGroup > label,
+#agentTopUpExpressGroup > label {
+    margin-top: 10px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 750;
+}
+
+/* Barra do IBAN — verde claro */
+.agent-iban-display {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+
+    width: 100%;
+    margin-top: 7px;
+    padding: 15px;
+
+    border: 1px solid #a7e8c7;
+    border-radius: 12px;
+
+    background: #e7f9ef;
+    color: #126b45;
+
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+/* Prefixo AO06 */
+.agent-iban-display > span {
+    color: #168052;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Restante do IBAN */
+.agent-iban-display > strong {
+    color: #075c39;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    overflow-wrap: anywhere;
+}
+
+/* Titular da conta */
+#agentTopUpIBANGroup > p {
+    margin: 10px 0 14px;
+    padding: 12px 13px;
+
+    border-left: 4px solid #22b875;
+    border-radius: 7px;
+
+    background: #f3faf6;
+    color: #374151;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    overflow-wrap: anywhere;
+}
+
+/* Nome do titular */
+#agentTopUpHolder {
+    color: #126b45;
+    font-weight: 800;
+}
+
+/* Número EXPRESS */
+#agentTopUpExpressGroup > p {
+    margin: 7px 0;
+    padding: 15px;
+
+    border: 1px solid #a7e8c7;
+    border-radius: 12px;
+
+    background: #e7f9ef;
+    color: #075c39;
+
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* =========================================
+   BOTÕES
+   ========================================= */
+
+/* Fechar janela */
+#agentTopUpClose {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f0f2f3;
+    color: #333333;
+
+    font-size: 27px;
+    cursor: pointer;
+}
+
+/* Enviar pedido */
+#agentTopUpSubmit {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 12px;
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #16bd78;
+    color: #063b28;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+#agentTopUpSubmit:disabled {
+    background: #d1d5d8;
+    color: #737373;
+    cursor: not-allowed;
+}
+
+/* Mensagens */
+#agentTopUpMessage {
+    color: #555555;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   AJUSTES PARA TELEMÓVEIS
+   ========================================= */
+
+@media (max-width: 480px) {
+    .agent-modal:not([hidden]) .agent-modal-content {
+        width: 100% !important;
+        max-width: 420px !important;
+        padding: 23px 17px !important;
+    }
+
+    #agentTopUpTitle {
+        font-size: 22px;
+    }
+
+    .agent-conversion strong {
+        font-size: 23px;
+    }
+
+    .agent-iban-display {
+        padding: 13px 11px;
+    }
+
+    .agent-iban-display > span,
+    .agent-iban-display > strong {
+        font-size: 14px;
+    }
+}
+/* =========================================
+   BOTÃO CHAT GERAL — ÁREA DOS AGENTES
+   ========================================= */
+
+.agent-general-chat-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #168bff, #0755c9);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(22, 139, 255, 0.2);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.agent-general-chat-button:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+.agent-general-chat-button:active {
+    transform: scale(0.98);
+}
+
+.agent-general-chat-button:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* Ajuste para telemóveis */
+@media (max-width: 480px) {
+    .agent-general-chat-button {
+        gap: 5px;
+        padding: 10px 9px;
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   CHAT GERAL — JANELA PRINCIPAL
+   ========================================= */
+
+.agent-chat-modal[hidden] {
+    display: none !important;
+}
+
+.agent-chat-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    background: rgba(0, 0, 0, 0.88);
+}
+
+.agent-chat-window {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 560px;
+    height: min(680px, 88vh);
+    background: #000000;
+    color: #ffffff;
+    border: 1px solid #303030;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.65);
+}
+
+/* Cabeçalho */
+.agent-chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    background: #080808;
+    border-bottom: 1px solid #292929;
+}
+
+.agent-chat-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+.agent-chat-header p {
+    margin: 5px 0 0;
+    color: #a9a9a9;
+    font-size: 12px;
+}
+
+.agent-chat-close {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 10px;
+    background: #222222;
+    color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Área das mensagens */
+.agent-chat-messages {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+    padding: 16px;
+    overflow-y: auto;
+    background: #000000;
+}
+
+.agent-chat-empty {
+    margin: auto;
+    color: #929292;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Mensagens */
+.agent-chat-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    gap: 5px;
+}
+
+.agent-chat-message.agent {
+    align-self: flex-start;
+}
+
+.agent-chat-message.admin {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.agent-chat-sender {
+    color: #bdbdbd;
+    font-size: 11px;
+}
+
+.agent-chat-bubble {
+    padding: 11px 14px;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    border-radius: 13px;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+/* Mensagens enviadas pelos agentes */
+.agent-chat-message.agent .agent-chat-bubble {
+    background: #8ed8ff;
+    color: #071827;
+    border-radius: 13px 13px 13px 3px;
+}
+
+/* Mensagens enviadas pelo GERENTE ADM */
+.agent-chat-message.admin .agent-chat-bubble {
+    background: #20c878;
+    color: #062718;
+    border-radius: 13px 13px 3px 13px;
+}
+
+.agent-chat-time {
+    color: #858585;
+    font-size: 10px;
+}
+
+/* Campo de escrita e botão Enviar */
+.agent-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    background: #080808;
+    border-top: 1px solid #292929;
+}
+
+.agent-chat-form input {
+    flex: 1;
+    min-width: 0;
+    min-height: 46px;
+    padding: 12px;
+    border: 1px solid #383838;
+    border-radius: 10px;
+    background: #171717;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.agent-chat-form input::placeholder {
+    color: #999999;
+}
+
+.agent-chat-form button {
+    min-height: 46px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 10px;
+    background: #168bff;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.agent-chat-form button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.agent-chat-status {
+    margin: 0;
+    padding: 0 12px 10px;
+    background: #080808;
+    color: #bdbdbd;
+    font-size: 12px;
+}
+
+.agent-chat-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Adaptação para telemóveis */
+@media (max-width: 480px) {
+    .agent-chat-modal {
+        padding: 8px;
+    }
+
+    .agent-chat-window {
+        height: 88vh;
+        border-radius: 12px;
+    }
+
+    .agent-chat-header {
+        padding: 13px;
+    }
+
+    .agent-chat-messages {
+        padding: 12px;
+    }
+
+    .agent-chat-message {
+        max-width: 92%;
+    }
+
+    .agent-chat-form {
+        padding: 9px;
+    }
+
+    .agent-chat-form button {
+        padding: 0 12px;
+    }
+}
+/* ===================================================== 
+   NGOLA-EXPRES — BALÕES DO CHAT GERAL DOS AGENTES 
+   Agentes: azul-claro | GERENTE ADM: verde 
+   ===================================================== */ 
+
+/* Área das mensagens */ 
+#agentGeneralChatMessages { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+  padding: 18px; 
+  box-sizing: border-box; 
+} 
+
+/* Estrutura comum de cada mensagem */ 
+#agentGeneralChatMessages .agent-chat-message { 
+  display: flex; 
+  flex-direction: column; 
+  width: fit-content; 
+  max-width: 82%; 
+  padding: 12px 16px; 
+  border-radius: 16px; 
+  box-sizing: border-box; 
+  overflow-wrap: anywhere; 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16); 
+} 
+
+/* MENSAGENS DOS AGENTES — AZUL-CLARO */ 
+#agentGeneralChatMessages .agent-chat-message.agent { 
+  align-self: flex-start; 
+  background: #bae6fd !important; 
+  color: #082f49 !important; 
+  border: 1px solid #7dd3fc; 
+  border-bottom-left-radius: 4px; 
+} 
+
+/* MENSAGENS DO GERENTE ADM — VERDE */ 
+#agentGeneralChatMessages .agent-chat-message.admin { 
+  align-self: flex-end; 
+  background: #166534 !important; 
+  color: #ffffff !important; 
+  border: 1px solid #22c55e; 
+  border-bottom-right-radius: 4px; 
+} 
+
+/* Nome do remetente */ 
+#agentGeneralChatMessages .agent-chat-sender { 
+  display: block; 
+  margin-bottom: 6px; 
+  font-size: 12px; 
+  font-weight: 700; 
+  color: inherit !important; 
+} 
+
+/* Texto da mensagem */ 
+#agentGeneralChatMessages .agent-chat-text { 
+  margin: 0; 
+  color: inherit !important; 
+  font-size: 15px; 
+  line-height: 1.5; 
+  white-space: pre-wrap; 
+  overflow-wrap: anywhere; 
+} 
+
+/* Data e hora */ 
+#agentGeneralChatMessages .agent-chat-time { 
+  display: block; 
+  margin-top: 7px; 
+  color: inherit !important; 
+  opacity: 0.75; 
+  font-size: 10px; 
+  text-align: right; 
+} 
+
+/* Mensagem quando o chat está vazio */ 
+#agentGeneralChatMessages .agent-chat-empty { 
+  align-self: center; 
+  color: #94a3b8; 
+  text-align: center; 
+  padding: 20px; 
+} 
+
+/* Adaptação para telemóveis */ 
+@media (max-width: 600px) { 
+  #agentGeneralChatMessages { 
+    padding: 12px; 
+    gap: 14px; 
+  } 
+
+  #agentGeneralChatMessages .agent-chat-message { 
+    max-width: 90%; 
+    padding: 11px 13px; 
+  } 
+
+  #agentGeneralChatMessages .agent-chat-text { 
+    font-size: 14px; 
+  } 
+}
+
+/* ========================================= 
+   LED DO ESTADO DA CONTA — NGOLA-EXPRES 
+   ========================================= */ 
+
+/* Indicador de estado: apagado por defeito */ 
+.agent-status .status-indicator { 
+  display: inline-block; 
+  width: 11px; 
+  height: 11px; 
+  min-width: 11px; 
+  border-radius: 50%; 
+  background-color: #888; 
+  box-shadow: none; 
+  transition: background-color 0.2s ease, box-shadow 0.2s ease; 
+} 
+
+/* CONTA ACTIVA — VERDE LUMINOSO */ 
+.agent-status .status-indicator.account-active { 
+  background-color: #00ff57; 
+  box-shadow: 0 0 5px #00ff57, 0 0 12px rgba(0, 255, 87, 0.9), 0 0 20px rgba(0, 255, 87, 0.6); 
+} 
+
+/* CONTA INACTIVA, SUSPENSA, BLOQUEADA OU DESACTIVADA — VERMELHO */ 
+.agent-status .status-indicator.account-inactive { 
+  background-color: #ff1744; 
+  box-shadow: 0 0 5px #ff1744, 0 0 12px rgba(255, 23, 68, 0.9), 0 0 20px rgba(255, 23, 68, 0.6); 
+}
+
+/* =====================================================
+   NGOLA-EXPRES — NOTIFICAÇÕES COMPACTAS DE VENDA
+   SUBSTITUIR O BLOCO ANTIGO DOS CARTÕES DE PEDIDOS
+   ===================================================== */
+
+/* Cartão compacto com fundo preto e borda verde */
+.agent-pending-order-card {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 10px 0;
+    padding: 12px;
+    background: #080a0a;
+    color: #ffffff;
+    border: 1px solid var(--agent-green);
+    border-radius: 11px;
+    box-shadow: 0 0 8px rgba(32, 200, 121, 0.10);
+    overflow-wrap: anywhere;
+}
+
+/* Cabeçalho compacto */
+.agent-order-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 0 9px;
+    border-bottom: 1px solid #263c30;
+}
+
+.agent-order-card-header h3 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Etiqueta de pedido pendente */
+.agent-order-badge {
+    display: inline-block;
+    padding: 4px 7px;
+    background: rgba(32, 200, 121, 0.12);
+    color: #20e88b;
+    border: 1px solid rgba(32, 200, 121, 0.35);
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 800;
+}
+
+/* Área dos valores: USD e Kz lado a lado */
+.agent-order-financial-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px 0 0;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+}
+
+.agent-order-usd {
+    margin: 0;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.agent-order-kz {
+    margin: 3px 0 0;
+    color: #b7c2bb;
+    font-size: 12px;
+}
+
+/* Método de pagamento */
+.agent-order-detail {
+    margin: 8px 0 0;
+    color: #aebbb3;
+    font-size: 11px;
+}
+
+/* ID da transacção: compacto e legível */
+.agent-order-transaction {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    padding: 7px 9px;
+    background: #111714;
+    border: 1px solid #263c30;
+    border-radius: 6px;
+}
+
+.agent-order-transaction span {
+    color: #aebbb3;
+    font-size: 10px;
+}
+
+.agent-order-transaction strong {
+    color: #35e58e;
+    font-size: 13px;
+    letter-spacing: 1px;
+    overflow-wrap: anywhere;
+}
+
+/* Data de recepção */
+.agent-order-date {
+    display: block;
+    margin-top: 8px;
+    color: #87958c;
+    font-size: 10px;
+}
+
+/* Estado do pedido */
+.agent-pending-order-card .agent-order-status {
+    margin: 8px 0 0;
+    padding-top: 7px;
+    border-top: 1px solid #263c30;
+    color: #35e58e;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+/* Telemóveis */
+@media (max-width: 480px) {
+    .agent-pending-order-card {
+        padding: 10px;
+        border-radius: 9px;
+    }
+
+    .agent-order-card-header h3 {
+        font-size: 12px;
+    }
+
+    .agent-order-financial-info {
+        gap: 5px 12px;
+    }
+
+    .agent-order-usd {
+        font-size: 14px;
+    }
+
+    .agent-order-kz {
+        font-size: 11px;
+    }
+}
+
+/* =====================================================
+   NGOLA-EXPRES — CONTENTOR DE PEDIDOS DE VENDA
+   ACRESCENTAR NO FINAL DE agentes.css
+   ===================================================== */
+
+/* Área que contém todos os pedidos pendentes */
+#agentPendingOrders {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    /* Altura máxima do contentor */
+    max-height: 320px;
+
+    /* A lista desloca-se internamente */
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Espaçamento interno */
+    padding: 8px;
+    margin-top: 12px;
+
+    /* Aparência do contentor */
+    background: #101212;
+    border: 1px solid #263c30;
+    border-radius: 12px;
+
+    /* Evita que os cartões aumentem a largura */
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    /* Deslocamento mais suave em telemóveis */
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Os cartões ficam dentro do contentor */
+#agentPendingOrders .agent-pending-order-card {
+    flex: 0 0 auto;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Barra de deslocamento do contentor */
+#agentPendingOrders::-webkit-scrollbar {
+    width: 5px;
+}
+
+#agentPendingOrders::-webkit-scrollbar-track {
+    background: #101212;
+    border-radius: 5px;
+}
+
+#agentPendingOrders::-webkit-scrollbar-thumb {
+    background: #20c878;
+    border-radius: 5px;
+}
+
+/* Ajustes para ecrãs pequenos */
+@media (max-width: 480px) {
+    #agentPendingOrders {
+        max-height: 280px;
+        padding: 6px;
+    }
+}
