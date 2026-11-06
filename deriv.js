@@ -7,7 +7,7 @@
 const DERIV_APP_ID = "34Q5j7BfYIe7fnycAjAkA";
 
 const DERIV_REDIRECT_URI =
-    "https://ngolaexpress.com/callback";
+    "https://ngola-express.pages.dev/callback";
 
 /* =========================================
    2. GERAR VALORES PKCE E STATE
